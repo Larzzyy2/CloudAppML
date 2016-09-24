@@ -1,0 +1,53 @@
+Project Omschrijving 
+
+-	Probleemstelling
+-	Doel van het project
+-	Methodologie
+-	Verwachte resultaten
+
+Probleemstelling
+
+
+Doel
+
+
+Methodologie
+
+
+
+
+Technologie
+
+Node, Angular, Meteor, MongoDB
+TCP
+Websockets
+Leerlingen krijgen melding dat er een vraag is gesteld
+Leerling beantwoord een vraag
+Leerkracht krijgt melding dat er vragen zijn beantwoordt
+
+Uitkomst voor de maatschappij
+
+Omschrijving van max. 1500 lettertekens (inclusief spaties). 
+Sector/partners, maatschappelijke dienstverlening, bijdrage op het vlak van duurzame ontwikkeling,… 
+
+
+User stories / Actoren
+
+As a pupil
+As a teacher
+
+
+
+
+Mockups
+
+Links
+
+-	Github
+-	Github projects
+Features
+-	Leerkrachten
+-	Kaart van de wereld
+o	Leerkracht zegt duid een land aan op de kaart
+o	En op het bord wordt getoond welke landen zijn aangeduid
+-	
