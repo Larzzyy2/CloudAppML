@@ -1,5 +1,5 @@
-# CloudAppML
-##Educational collaboration tool
+# PreZENtation
+##Educational collaboration tool for presentations
 >Product owner: Tom Peeters<br>
 >Developers: Lars Suffys, Milan Willems
 
