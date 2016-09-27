@@ -1,7 +1,6 @@
 #Prezentation
 ==========
 Educational collaboration tool for presentations
-
 ----------
 
 >Product owner: 
@@ -10,6 +9,7 @@ Educational collaboration tool for presentations
 >Developers:
 >>Lars Suffys
 >>Milan Willems
+-------------------------
 ##Projectomschrijving
 --------------------------
 
@@ -43,6 +43,7 @@ Interactiviteit zorgt voor leukere lessen en houdt de leerlingen hun focus bij d
 - Meteor
 - MongoDB
 - 3-way handshake
+
 ####Websockets API’s
 
 >- Socket.io --> Node.js (cross-platform)
