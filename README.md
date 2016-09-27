@@ -9,7 +9,7 @@ Educational collaboration tool for presentations
 >Developers:
 >>Lars Suffys
 >>Milan Willems
--------------------------
+
 ##Projectomschrijving
 --------------------------
 
