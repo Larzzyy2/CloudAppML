@@ -68,9 +68,9 @@ De applicatie kan ook op grote evenementen gebruikt worden om bijvoorbeeld een e
 | Pupil    | Login with Gmail                          | I can participate in presentations                    |
 | Pupil    | Fill in access code                       | I can access presentation                             |
 | Pupil    | Answer questions                          | The teacher can see my answers                        |
-| Pupil    | See history of my answers                 | I can see my wrong answers and correct ones           |
+| Pupil    | See history of my answers                 | I can see my wrong answers and my correct ones        |
 | Teacher  | Register with Gmail                       | To get started                                        |
-| Teacher  | Login with Gmail                          | To access the control pane                            |
+| Teacher  | Login with Gmail                          | Access my presentations and manage them               |
 | Teacher  | Create presentation                       | I can assign questions                                |
 | Teacher  | Create question                           | Itt can be assigned to a presentation                 |
 | Teacher  | Set the type of a question                | It can be set to multiple choice or open question     |

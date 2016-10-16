@@ -1,0 +1,18 @@
+<head>
+  <title>prezentation</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Presentations</h1>
+        <ul>
+        {{#each presentations}}
+        {{> presentation}}
+        {{/each}}
+        </ul>
+    </div>
+</body>
+
+<template name="presentation">
+<li>{{text}}</li>
+</template>
