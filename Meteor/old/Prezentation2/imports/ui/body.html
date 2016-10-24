@@ -1,0 +1,17 @@
+<body>
+  <div class="container">
+    <header>
+      <h1>Prezentation</h1>
+    </header>
+ <button class="next-image">Next</button>
+    <ul>
+      {{#each images}}
+        {{> image}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+ 
+<template name="image">
+  <li><img src="{{url}}"></li>
+</template>

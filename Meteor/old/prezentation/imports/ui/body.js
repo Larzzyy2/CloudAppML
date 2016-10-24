@@ -1,12 +1,15 @@
-import { Presentations } from '../api/presentations.js';
+import { demo } from '../api/demo.js';
 import { Template } from 'meteor/templating';
 
-import './body.html'
+import './demo.html'
 
 Template.body.helpers({
     presentations(){
         return Presentations.find({});
     },
+    demo(){
+        return demo.find({});
+    }
 });
 
 Template.body.events({

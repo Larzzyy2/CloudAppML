@@ -1,0 +1,11 @@
+<body>
+{{> user}}
+</body>
+
+<template name='user'>
+    {{#if currentUser}}
+    <p><img src="{{profileURL}}" width=100></p>
+    <p>Hello, {{name}}</p>
+    <p>Your e-mail: {{email}}</p>
+    {{/if}}
+</template>
