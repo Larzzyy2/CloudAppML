@@ -1,8 +1,11 @@
 import './mypresentations.html';
 
+Meteor.subscribe('myPresentations');
+
 Template.mypresentations.helpers({
     presentations(){
-        var data = Presentations.find();
+        var currentUserId = Meteor.userId();
+        var data = Presentations.find({createdBy: currentUserId});
         return data;
     },
 });
@@ -15,10 +18,12 @@ Template.mypresentations.events({
     //Get value from form element
     const target = e.target;
     const name = target.name.value;
-        
+    var currentUserId = Meteor.userId();
     //Insert Presentation into collection
     Presentations.insert({
-        name: name
+        name: name,
+        createdBy: currentUserId
+        
     });
     
     //Clear form
