@@ -38,18 +38,9 @@ Interactiviteit zorgt voor leukere lessen en houdt de leerlingen hun focus bij d
 
 
 ###Technologie
-- Bootstrap voor UI
-- NodeJS voor Backend
+
 - Meteor
-- MongoDB
 - 3-way handshake
-
-####Websockets API’s
-
->- Socket.io --> Node.js (cross-platform)
->- WebSocket-Node --> Node.js (WebSocket server API implementation) 
->- Total.js --> Node.js (Web application framework)
->- Faye --> Node.js (Websocket 2-way) (EventSource one-way) 
 
 
 ###Uitkomst voor de maatschappij
@@ -64,12 +55,9 @@ De applicatie kan ook op grote evenementen gebruikt worden om bijvoorbeeld een e
 
 | As a...  | I want to...                              | So that...                                            |
 |----------|-------------------------------------------|-------------------------------------------------------|
-| Pupil    | Register with Gmail                       | I am able to log in                                   |
-| Pupil    | Login with Gmail                          | I can participate in presentations                    |
 | Pupil    | Fill in access code                       | I can access presentation                             |
 | Pupil    | Answer questions                          | The teacher can see my answers                        |
 | Pupil    | See history of my answers                 | I can see my wrong answers and my correct ones        |
-| Teacher  | Register with Gmail                       | To get started                                        |
 | Teacher  | Login with Gmail                          | Access my presentations and manage them               |
 | Teacher  | Create presentation                       | I can assign questions                                |
 | Teacher  | Create question                           | Itt can be assigned to a presentation                 |
@@ -79,15 +67,3 @@ De applicatie kan ook op grote evenementen gebruikt worden om bijvoorbeeld een e
 | Teacher  | Export data                               | I can use it in Excel/other programs                  |
 | Teacher  | Show access code                          | Pupils can enter the code and access the presentation |
 
-
-###Features
->- Add a presentation
->- Add questions
->- See results of a presentation
->- Export the results of a presentation
->- Answer a question
->- Login via GMail
->- Import powerpoint presentation and add questions at the end of a chapter
->- Timespan for answering questions
-
- -----------------------------------------------------------
