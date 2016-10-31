@@ -1,5 +1,5 @@
 import './login.html';
-
+//Meteor.subscribe('googleDetails');
 Template.user.helpers({
    
    profileURL: function() {

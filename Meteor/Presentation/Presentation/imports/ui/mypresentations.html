@@ -1,11 +1,6 @@
-<template name="mypresentations">
-    {{#if currentUser}}
-    <h2>My Presentations</h2>
-    <form id="new-presentation">
-        <input type="text" name="name" placeholder="Add new Presentation"/>
-    </form>
-    
-    <ul>
+<template name="myPresentations">
+{{#if currentUser}}
+<ul>
     {{#each presentations}}
     <li>
     {{name}}

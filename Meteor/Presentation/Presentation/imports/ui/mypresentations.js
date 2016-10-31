@@ -1,33 +1,14 @@
-import './mypresentations.html';
+import './myPresentations.html';
 
+//Subscribe to presentations owned by the user
 Meteor.subscribe('myPresentations');
 
-Template.mypresentations.helpers({
+//Helper for getting all Presentations
+Template.myPresentations.helpers({
     presentations(){
+        //Gets all presentations associated with user
         var currentUserId = Meteor.userId();
         var data = Presentations.find({createdBy: currentUserId});
         return data;
     },
 });
-Template.mypresentations.events({
-    'submit #new-presentation'(e){
-    //prevent default browser form submit
-    e.preventDefault();
-
-        
-    //Get value from form element
-    const target = e.target;
-    const name = target.name.value;
-    var currentUserId = Meteor.userId();
-    //Insert Presentation into collection
-    Presentations.insert({
-        name: name,
-        createdBy: currentUserId
-        
-    });
-    
-    //Clear form
-    e.target.name.value="";
-    
-    },
-})
