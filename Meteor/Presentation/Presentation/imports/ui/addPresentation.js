@@ -12,10 +12,12 @@ Template.addPresentation.events({
     const target = e.target;
     const name = target.name.value;
     var currentUserId = Meteor.userId();
+    var date = new Date();
     //Insert Presentation into collection
     Presentations.insert({
         name: name,
         createdBy: currentUserId,
+        dateCreated: date,
         AccessCode: 0,
         Questions: Object()
         
