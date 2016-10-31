@@ -5,10 +5,14 @@
 <body>
   <h1>Welcome to Presentation!</h1>
     {{> loginButtons}}
+    {{#if currentUser}}
     {{> user}}
     <h2>Add a presentation</h2>
     {{> addPresentation}}
     <h2>My presentations</h2>
     {{> myPresentations}}
+    {{else}}
+    <p>Please log in to continue.</p>
+    {{/if}}
 </body>
 
