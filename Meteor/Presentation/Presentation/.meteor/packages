@@ -25,3 +25,4 @@ http
 service-configuration
 msavin:mongol
 coffeescript
+session
