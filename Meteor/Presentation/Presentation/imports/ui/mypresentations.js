@@ -28,13 +28,15 @@ Template.myPresentations.events({
         if(Session.equals("toggleDisabled", disabled="disabled"))
             {
                 Session.set('toggleDisabled', '');
+                //Input field can be edited
+                //TODO Callback to database when value is changed
+                //Presentations.update({_id: this._id}, {$set: {name: updatedName}})
             }
         else
             {
                 Session.set('toggleDisabled', disabled="disabled")
+                //Input field is disabled
             }
-        //Code for editing the presentation name
-        //var updatedName = //TODO
-        //Presentations.update({_id: this._id}, {$set: {name: updatedName}})
+        
     }
 });
