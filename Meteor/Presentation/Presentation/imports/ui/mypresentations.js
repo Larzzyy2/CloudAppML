@@ -12,3 +12,12 @@ Template.myPresentations.helpers({
         return data;
     },
 });
+Template.myPresentations.events({
+   "click #delete" (event){
+       Presentations.remove(this._id);
+       
+   },
+    "click #edit" (event){
+        //Code for editing the presentation name
+    }
+});

@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import './accounts-config.js'
 
 Meteor.startup(() => {
 });
