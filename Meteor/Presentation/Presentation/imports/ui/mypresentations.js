@@ -15,22 +15,32 @@ Template.myPresentations.helpers({
     },
     toggleDisabled: function(){
         return Session.get('toggleDisabled');
-    }
+    },
     
 });
 Template.myPresentations.events({
-   "click #delete" (event){
+    'submit #new-name'(e){
+         e.preventDefault();
+
+        
+    //Get value from form element
+    const target = e.target;
+    const name = target.newName.value;
+    Presentations.update({_id: this._id}, {$set: {name: name}})
+    Session.set('toggleDisabled', disabled="disabled")
+    
+    },
+    
+   "click #delete" (){
        //Removes the selected presentation from collection
        Presentations.remove(this._id);
        
    },
-    "click #edit" (event){
+    "click #edit" (){
         if(Session.equals("toggleDisabled", disabled="disabled"))
             {
                 Session.set('toggleDisabled', '');
-                //Input field can be edited
-                //TODO Callback to database when value is changed
-                //Presentations.update({_id: this._id}, {$set: {name: updatedName}})
+
             }
         else
             {
@@ -38,5 +48,5 @@ Template.myPresentations.events({
                 //Input field is disabled
             }
         
-    }
+    },
 });

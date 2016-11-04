@@ -1,5 +1,5 @@
 <template name="myPresentations">
-{{#if currentUser}}
+{{#if presentations.count}}
 <div class="container">
 	<div class="row">    
         <div class="col-md-12">
@@ -15,7 +15,7 @@
                 <tbody>
                     {{#each presentations}}
                         <tr>
-                            <td><input type="text" value="{{name}}" id="name" {{toggleDisabled}}></td>
+                            <td><form id="new-name"><input type="text" value="{{name}}" id="name" name="newName"  {{toggleDisabled}}></form></td>
                             <td>{{dateCreated}}</td>
                             <td><p title="Start"><button class="btn btn-primary btn-xs" id="start"><span class="glyphicon glyphicon-play-circle"></span></button></p></td>
                             <td><p title="Edit"><button class="btn btn-primary btn-xs" id="edit"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
@@ -29,7 +29,7 @@
     </div>
 </div>
 {{else}}
-    <h3>Login in to start</h3>
+   <p>No presentations exist. Create one to get started.</p>
 {{/if}}
 </template>
     
