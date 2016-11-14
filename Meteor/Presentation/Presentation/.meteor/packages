@@ -26,3 +26,4 @@ service-configuration
 msavin:mongol
 coffeescript
 session
+react-meteor-data
