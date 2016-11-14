@@ -1,5 +1,5 @@
 {
-  "name": "Presentation",
+  "name": "react-nav",
   "private": true,
   "scripts": {
     "start": "meteor run"
@@ -8,6 +8,14 @@
     "classnames": "^2.2.5",
     "meteor-node-stubs": "~0.2.0",
     "react": "^15.3.2",
+    "react-addons-create-fragment": "^15.3.1",
+    "react-addons-css-transition-group": "^15.3.1",
+    "react-addons-linked-state-mixin": "^15.3.1",
+    "react-addons-perf": "^15.3.1",
+    "react-addons-pure-render-mixin": "^15.3.1",
+    "react-addons-test-utils": "^15.3.1",
+    "react-addons-transition-group": "^15.3.1",
+    "react-addons-update": "^15.3.1",
     "react-dom": "^15.3.2"
   }
 }

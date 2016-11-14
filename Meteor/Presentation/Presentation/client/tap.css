@@ -1,0 +1,36 @@
+/* from http://www.w3schools.com/howto/howto_js_tabs.asp */
+
+/* Style the list */
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+ul.tab li {
+    text-align: center;
+    float: left;
+}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li:hover {
+    background-color: #ddd;
+    transition: 0.3s;
+}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {background-color: #ccc;}
