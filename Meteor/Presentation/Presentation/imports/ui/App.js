@@ -9,37 +9,11 @@ import { Meteor } from 'meteor/meteor';
 
 
 import Nav  from './Nav.js';
-import YourPresentations  from './YourPresentations.js';
-import Settings  from './Settings.js';
-import LogOut from './LogOut.js';
+import YourPresentations  from './Pages/YourPresentations.js';
+import Settings  from './Pages/Settings.js';
 
 
-const Home = () => {
-  return (
-    <div>
-      This
-    </div>
-  );
-};
-
-const Away = () => {
-  return (
-    <div>
-      Is
-    </div>
-  );
-};
-
-const Fun = () => {
-  return (
-    <div>
-      Awesome
-    </div>
-  );
-};
-
-
-const DemoPages = { YourPresentations, Settings, LogOut };
+const DemoPages = { YourPresentations, Settings };
 
 export default class App  extends Component {
 	constructor(props) {
