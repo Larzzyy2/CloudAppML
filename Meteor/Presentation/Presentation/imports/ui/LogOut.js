@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
-export default class TEST  extends Component {
+export default class LogOut  extends Component {
   constructor(props) {
     super(props);
 
@@ -16,8 +16,7 @@ export default class TEST  extends Component {
   render () {
     return (
       <div>
-        TEST
-        <p>TESTTESTTESTTESTTEST</p>
+        Log Out
       </div>
     );
   }

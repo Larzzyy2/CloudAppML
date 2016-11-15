@@ -9,8 +9,9 @@ import { Meteor } from 'meteor/meteor';
 
 
 import Nav  from './Nav.js';
-import Times  from './Times.js';
-import TEST  from './TEST.js';
+import YourPresentations  from './YourPresentations.js';
+import Settings  from './Settings.js';
+import LogOut from './LogOut.js';
 
 
 const Home = () => {
@@ -38,14 +39,14 @@ const Fun = () => {
 };
 
 
-const DemoPages = { Home, Away, Fun, Times, TEST };
+const DemoPages = { YourPresentations, Settings, LogOut };
 
 export default class App  extends Component {
 	constructor(props) {
   	super(props);
 
 		this.state = {
- 			currentTab: 'Home',
+ 			currentTab: 'YourPresentations',
  		};
  		this.changeTab = this.changeTab.bind(this);
 	}
