@@ -35,7 +35,9 @@ Template.myPresentations.events({
         e.preventDefault();
         const target = e.target;
         const question = target.newQuestion.value;
-        Presentations.update({_id: this._id}, {$set: {Questions: {question: question}}});
+        Presentations.update({_id: this._id}, {$push: {Questions:[
+            {question: question}
+        ] }});
     },
     
    "click #delete" (){
