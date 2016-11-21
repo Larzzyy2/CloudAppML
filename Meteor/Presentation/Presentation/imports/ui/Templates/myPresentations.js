@@ -31,13 +31,6 @@ Template.myPresentations.events({
     
     },
     
-    'submit #new-question'(e){
-        e.preventDefault();
-        const target = e.target;
-        const question = target.newQuestion.value;
-        Presentations.update({_id: this._id}, {$set: {Questions: {question: question}}});
-    },
-    
    "click #delete" (){
        //Removes the selected presentation from collection
        Presentations.remove(this._id);
