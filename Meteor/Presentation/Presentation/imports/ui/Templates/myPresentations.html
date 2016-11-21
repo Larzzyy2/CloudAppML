@@ -11,46 +11,27 @@
                             <th>Edit</th>
                             <th>Delete</th>
                         </thead>
-                        <tbody> {{#each presentations}}
+                        <tbody> 
+                            {{#each presentations}}
                             <tr>
-                                <td>
-                                    <form id="new-name">
-                                        <input type="text" value="{{name}}" id="name" name="newName" {{toggleDisabled}}> </form>
-                                </td>
+                                <td><form id="new-name"><input type="text" value="{{name}}" id="name" name="newName" {{toggleDisabled}}> </form></td>
                                 <td>{{dateCreated}}</td>
-                                <td>
-                                    <p title="Start">
-                                        <button class="btn btn-primary btn-xs" id="start"><span class="glyphicon glyphicon-play-circle"></span></button>
-                                    </p>
-                                </td>
-                                <td>
-                                    <p title="Edit">
-                                        <button class="btn btn-primary btn-xs" id="edit"><span class="glyphicon glyphicon-pencil"></span></button>
-                                    </p>
-                                </td>
-                                <td>
-                                    <p title="Delete">
-                                        <button class="btn btn-danger btn-xs" id="delete"><span class="glyphicon glyphicon-trash"></span></button>
-                                    </p>
-                                </td>
+                                <td><p title="Start"><button class="btn btn-primary btn-xs" id="start"><span class="glyphicon glyphicon-play-circle"></span></button></p></td>
+                                <td><p title="Edit"><button class="btn btn-primary btn-xs" id="edit"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                                <td><p title="Delete"><button class="btn btn-danger btn-xs" id="delete"><span class="glyphicon glyphicon-trash"></span></button></p></td>
                             </tr>
                             <tr>
                                 <th scope="row">*</th>
-                                <td class="col-md-12">
-                                    <form id="new-question">
-                                        <input class="col-md-12" type="text" placeholder="Geef uw vraag in" id="question" name="newQuestion"> </form>
-                                </td>
-                                <td>
-                                    <p title="Edit">
-                                        <button class="btn btn-primary btn-xs" id="edit"><span class="glyphicon glyphicon-pencil"></span></button>
-                                    </p>
-                                </td>
-                                <td>
-                                    <p title="Delete">
-                                        <button class="btn btn-danger btn-xs" id="delete"><span class="glyphicon glyphicon-trash"></span></button>
-                                    </p>
-                                </td>
-                            </tr> {{/each}} </tbody>
+                                <td class="col-md-12"><form id="new-question"><input class="col-md-12" type="text" placeholder="Geef uw vraag in" id="question" name="newQuestion"> </form></td>
+                                <td><p title="Edit"><button class="btn btn-primary btn-xs" id="edit"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                                <td><p title="Delete"><button class="btn btn-danger btn-xs" id="delete"><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">-</th>
+                                <td></td>
+                            </tr> 
+                            {{/each}} 
+                        </tbody>
                     </table>
                 </div>
             </div>
