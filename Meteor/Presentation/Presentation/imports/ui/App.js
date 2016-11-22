@@ -3,10 +3,6 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
-// import  Home  from './Pages.jsx';
-// import  Away  from './Pages.jsx';
-// import  Fun  from './Pages.jsx';
-
 
 import Nav  from './Nav.js';
 import YourPresentations  from './Pages/YourPresentations.js';
