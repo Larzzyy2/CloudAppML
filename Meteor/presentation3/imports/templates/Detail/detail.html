@@ -1,11 +1,29 @@
-<template name="DetailLayout">
+<template name="DetailLayout"> 
+{{> Template.dynamic template=detail}} 
+</template>
 
-{{> Template.dynamic template=detail}}
+<template name="DetailQuestion">
+    {{> Template.dynamic template=questiondetail}}
 </template>
 
 <template name="detailPresentation">
-<button id="back">Back</button>
-{{#each presentation}}
-<p>Name: {{name}}</p>
-{{/each}}
+    <button id="back">Back</button> {{#each presentation}}
+    <div class="container">
+        <div class="col-md-12">
+            <h1>Presentatie: {{name}}</h1>
+            <div class="row">
+                <input type="text" class="form-control" id="question"> </div>
+            <div class="row">
+                <button type="button" class="btn btn-primary" id="MultipleChoice">Multiple choice</button>
+                <button type="button" class="btn btn-primary">Open question</button>
+                <button type="button" class="btn btn-primary">Question type</button>
+                <button type="button" class="btn btn-primary">Question type</button>
+            </div>
+        </div>
+    </div> {{/each}} 
+</template>
+
+
+<template name="OpenQuestion">
+    <button type="button" class="btn btn-primary" id="submit">Submit</button>
 </template>

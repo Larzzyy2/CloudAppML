@@ -10,5 +10,13 @@ FlowRouter.route('/presentations/:id',{
         Session.set('currentPresentationID',params.id);
         BlazeLayout.render('DetailLayout',{detail:'detailPresentation'});
     },
-})
+});
+
+FlowRouter.route('/presentations/:id/multiplechoice',{
+    action(params)
+    {
+        Session.set('currentPresentationID',params.id);
+        BlazeLayout.render('DetailLayout',{detail:'detailPresentation', questiondetail:'MultipleChoice'});
+    },
+});
 

@@ -13,4 +13,7 @@ Template.detailPresentation.events({
    "click #back" (){
     FlowRouter.go('/');
    },
+    "click #MultipleChoice" (){
+        FlowRouter.go('/presentations/'+presentationID+'/multiplechoice');
+    },
 });
