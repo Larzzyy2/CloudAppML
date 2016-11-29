@@ -12,7 +12,7 @@ PresentationSchema = new SimpleSchema({
     AccessCode: {
         type: Number,
         min: 0,
-        max: 1000
+        max: 100000
     },
     dateCreated: {
         type: Date

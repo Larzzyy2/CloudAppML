@@ -7,23 +7,29 @@ Template.addPresentation.events({
     //prevent default browser form submit
     e.preventDefault();
 
-        
     //Get value from form element
     const target = e.target;
     const name = target.name.value;
     var currentUserId = Meteor.userId();
-    var date = new Date();
+    
     //var readableDate = date.toLocaleDateString();
+    do {
+        var date = new Date();
+        var x = Random.fraction()*100000
+        var code = parseInt(x,10);
+    }
+    while(Presentations.findOne({AccessCode: code})!==undefined)    
+   
         
-    var x = Random.fraction()*1000
-    var AccessCode = parseInt(x,10);
     //Insert Presentation into collection
-    Presentations.insert({
-        name: name,
-        createdBy: currentUserId,
-        dateCreated: date,
-        AccessCode: AccessCode,
-    });
+        Presentations.insert({
+            name: name,
+            createdBy: currentUserId,
+            dateCreated: date,
+            AccessCode: code
+        });
+    
+
     
     //Clear form
     e.target.name.value="";
