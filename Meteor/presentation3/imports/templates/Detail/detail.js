@@ -14,6 +14,11 @@ Template.detailPresentation.events({
     FlowRouter.go('/');
    },
     "click #MultipleChoice" (){
-        FlowRouter.go('/presentations/'+presentationID+'/multiplechoice');
+        var ID = Session.get('currentPresentationID');
+        FlowRouter.go('/presentations/'+ID+'/multiplechoice');
     },
+    "click #Open"(){
+        var ID = Session.get('currentPresentationID');
+        FlowRouter.go('/presentations/'+ID+'/open');
+    }
 });

@@ -3,7 +3,7 @@
 </template>
 
 <template name="DetailQuestion">
-    {{> Template.dynamic template=questiondetail}}
+{{> Template.dynamic template=questiondetail}}
 </template>
 
 <template name="detailPresentation">
@@ -15,15 +15,16 @@
                 <input type="text" class="form-control" id="question"> </div>
             <div class="row">
                 <button type="button" class="btn btn-primary" id="MultipleChoice">Multiple choice</button>
-                <button type="button" class="btn btn-primary">Open question</button>
-                <button type="button" class="btn btn-primary">Question type</button>
-                <button type="button" class="btn btn-primary">Question type</button>
+                <button type="button" class="btn btn-primary" id="Open">Open question</button>
             </div>
         </div>
     </div> {{/each}} 
 </template>
 
 
-<template name="OpenQuestion">
-    <button type="button" class="btn btn-primary" id="submit">Submit</button>
+<template name="MultipleChoice">
+    <p>This is multiplechoice</p>
+</template>
+<template name="Open">
+    <p>This is open</p>
 </template>
