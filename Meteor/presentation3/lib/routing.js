@@ -7,7 +7,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/presentations/:id',{
     action(params)
     {
-        console.log("The ID of the presentation is: " + params.id);
+        Session.set('currentPresentationID',params.id);
         BlazeLayout.render('DetailLayout',{detail:'detailPresentation'});
     },
 })

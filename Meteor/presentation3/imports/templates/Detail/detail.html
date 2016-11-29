@@ -1,0 +1,11 @@
+<template name="DetailLayout">
+
+{{> Template.dynamic template=detail}}
+</template>
+
+<template name="detailPresentation">
+<button id="back">Back</button>
+{{#each presentation}}
+<p>Name: {{name}}</p>
+{{/each}}
+</template>
