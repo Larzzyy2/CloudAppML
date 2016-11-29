@@ -13,15 +13,16 @@ Template.addPresentation.events({
     const name = target.name.value;
     var currentUserId = Meteor.userId();
     var date = new Date();
-    var readableDate = date.toLocaleDateString();
+    //var readableDate = date.toLocaleDateString();
+        
+    var x = Random.fraction()*1000
+    var AccessCode = parseInt(x,10);
     //Insert Presentation into collection
     Presentations.insert({
         name: name,
         createdBy: currentUserId,
-        dateCreated: readableDate,
-        AccessCode: 0,
-        Questions: Object()
-        
+        dateCreated: date,
+        AccessCode: AccessCode,
     });
     
     //Clear form
