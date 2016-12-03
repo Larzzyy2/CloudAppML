@@ -1,9 +1,12 @@
 <template name="addPresentation">
     {{#if currentUser}}
-        <form id="new-presentation">
+    <button id="createPresentation"><span class="btn btn-info btn-lg"><span class="glyphicon glyphicon-plus"></span></span> New Presentation</button>
+    {{#if newPresentation}}
+            <form id="newPresentation">
             <input type="text" name="name" placeholder="Add new Presentation"/>
-        </form>
+            <input type="submit" value="Create Presentation">
+    </form>
     {{else}}
-    <h3>Login in to start</h3>
+    {{/if}}
     {{/if}}
 </template>

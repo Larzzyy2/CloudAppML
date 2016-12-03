@@ -1,12 +1,16 @@
 import './addPresentation.html';
+Session.setDefault("newPresentation", false);
 
 //Event for adding a Presentation
 Template.addPresentation.events({
-    //Creates a new presentation
-    'submit #new-presentation'(e){
-    //prevent default browser form submit
-    e.preventDefault();
 
+    'click #createPresentation'(){
+        Session.set('newPresentation', true);
+    },
+    'submit #newPresentation'(e){
+        
+    //Creates a new presentation 
+    e.preventDefault();
     //Get value from form element
     const target = e.target;
     const name = target.name.value;
@@ -32,8 +36,15 @@ Template.addPresentation.events({
 
     
     //Clear form
-    e.target.name.value="";
-    
-    },
-})
+    target.name.value="";
+        
+    Session.set('newPresentation',false);
+    }
 
+});
+
+Template.addPresentation.helpers({
+    newPresentation: function(){
+        return Session.get('newPresentation');
+    }
+});

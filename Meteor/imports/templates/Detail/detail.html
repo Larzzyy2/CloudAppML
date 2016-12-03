@@ -1,30 +1,44 @@
 <template name="DetailLayout"> 
-{{> Template.dynamic template=detail}} 
-</template>
-
-<template name="DetailQuestion">
-{{> Template.dynamic template=questiondetail}}
-</template>
-
-<template name="detailPresentation">
-    <button id="back">Back</button> {{#each presentation}}
-    <div class="container">
+<button id="back">Back</button>
+        <div class="container">
         <div class="col-md-12">
-            <h1>Presentatie: {{name}}</h1>
-            <div class="row">
-                <input type="text" class="form-control" id="question"> </div>
-            <div class="row">
+            {{> Info}}
+            {{> QuestionTypes}}
+            {{> Question}}
+            {{> Answers}}
+        </div>
+        </div> 
+</template>
+
+<template name="Info">
+{{#with presentation}}
+<h1>{{presentation.name}}</h1>
+<p>{{presentation.AccessCode}}</p>
+{{/with}} 
+</template>
+
+<template name="QuestionTypes">
+            <div class="row" id="questiontype">
                 <button type="button" class="btn btn-primary" id="MultipleChoice">Multiple choice</button>
                 <button type="button" class="btn btn-primary" id="Open">Open question</button>
             </div>
-        </div>
-    </div> {{/each}} 
+</template>
+<template name="Question">
+            <div class="row">
+                <p>Your question:</p>
+                <input type="text" class="form-control" id="question"> 
+            </div>
 </template>
 
+<template name="Answers">
+    {{#if MultipleChoice}}
+            <p>Answers</p>
+            <div class="row">            
 
-<template name="MultipleChoice">
-    <p>This is multiplechoice</p>
-</template>
-<template name="Open">
-    <p>This is open</p>
+                <input type="text" placeholder="Answer 1">
+
+            <button type="button" class="addAnswer btn btn-primary" id="AddAnswer">+ Add Answer</button>
+            </div>
+        {{/if}}
+        <button type="button" class="btn btn-block" id="AddQuestion">+ Add question</button>
 </template>
