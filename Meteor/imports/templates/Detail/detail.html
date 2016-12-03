@@ -11,10 +11,10 @@
 </template>
 
 <template name="Info">
-{{#with presentation}}
-<h1>{{presentation.name}}</h1>
-<p>{{presentation.AccessCode}}</p>
-{{/with}} 
+{{#each presentation}}
+<h1>Name: {{name}}</h1>
+<p>Access code: {{AccessCode}}</p>
+{{/each}} 
 </template>
 
 <template name="QuestionTypes">
