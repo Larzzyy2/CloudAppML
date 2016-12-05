@@ -29,17 +29,17 @@ Template.Question.events({
         "submit #AddQuestion"(e){
          e.preventDefault();
         //Get value from form element
-        const target = e.target;
-        const Question = target.QuestionString.value;
+        //const target = e.target;
+        //const Question = target.QuestionString.value;
         var currentPresentationID = Session.get('currentPresentationID');
             
         Questions.insert({
-            QuestionString: Question,
+            QuestionString: "test",
             QuestionType: 'Open',
             PresentationID: currentPresentationID
         });
         
-        target.QuestionString.value="";
+        //target.QuestionString.value="";
             
     },
 });

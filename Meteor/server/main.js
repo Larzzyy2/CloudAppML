@@ -3,6 +3,12 @@ import { Meteor } from 'meteor/meteor';
 import './accounts-config.js'
 
 Meteor.startup(() => {
+
+  if (Types.find().count() === 0) {
+      Types.insert({name: 'Multiple Choice'});
+      Types.insert({name: 'Open'});
+  }
+
 });
 
 Meteor.publish('myPresentations', function(){
