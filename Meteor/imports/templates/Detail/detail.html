@@ -26,7 +26,10 @@
 <template name="Question">
             <div class="row">
                 <p>Your question:</p>
-                <input type="text" class="form-control" id="question"> 
+            <form id="AddQuestion">
+                <input type="text" class="form-control" id="QuestionString">
+                <input type="submit" value="Add Question">
+            </form>
             </div>
 </template>
 
@@ -34,11 +37,9 @@
     {{#if MultipleChoice}}
             <p>Answers</p>
             <div class="row">            
-
                 <input type="text" placeholder="Answer 1">
-
             <button type="button" class="addAnswer btn btn-primary" id="AddAnswer">+ Add Answer</button>
             </div>
         {{/if}}
-        <button type="button" class="btn btn-block" id="AddQuestion">+ Add question</button>
+       
 </template>

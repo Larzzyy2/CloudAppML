@@ -20,16 +20,29 @@ Template.DetailLayout.events({
 
 Template.Answers.events({
     "click #AddAnswer"(){
-        Session.set('AnswerCounter',2)
+        //To DO extra answer
     },
 
 });
 
 Template.Question.events({
-        "click #AddQuestion"(){
-        //TO Do push question to collection
+        "submit #AddQuestion"(e){
+         e.preventDefault();
+        //Get value from form element
+        const target = e.target;
+        const Question = target.QuestionString.value;
+        var currentPresentationID = Session.get('currentPresentationID');
+            
+        Questions.insert({
+            QuestionString: Question,
+            QuestionType: 'Open',
+            PresentationID: currentPresentationID
+        });
+        
+        target.QuestionString.value="";
+            
     },
-})
+});
 
 Template.QuestionTypes.events({
         "click #MultipleChoice" (){
@@ -40,8 +53,6 @@ Template.QuestionTypes.events({
     "click #Open"(){
         Session.set('MultipleChoice', false);
         Session.set('Open', true);
-        //var ID = Session.get('currentPresentationID');
-        //FlowRouter.go('/presentations/'+ID+'/open');
     },
 });
 Template.Answers.helpers({
