@@ -19,3 +19,11 @@ Meteor.publish('myPresentations', function(){
 Meteor.publish('googleDetails', function(){
       return Meteor.users.find({_id: this.userId});
 });
+
+Meteor.publish('Types', function(){
+    return Types.find();
+});
+
+Meteor.publish('Questions', function(){
+    return Questions.find();
+});

@@ -2,6 +2,10 @@ import './detail.html';
 Session.setDefault('AnswerCounter',1);
 Session.setDefault('Open',false);
 Session.setDefault('MultipleChoice',true);
+
+Meteor.subscribe('Types');
+Meteor.subscribe('Questions')
+
                            
 Template.Info.helpers({
         presentation(){
@@ -29,17 +33,27 @@ Template.Question.events({
         "submit #AddQuestion"(e){
          e.preventDefault();
         //Get value from form element
-        //const target = e.target;
-        //const Question = target.QuestionString.value;
+        const target = e.target;
+        const Question = target.QuestionString.value;
         var currentPresentationID = Session.get('currentPresentationID');
-            
+        var QuestionID;
+            if(Session.get('MultipleChoice')){
+                    var data = Types.findOne({name:"Multiple Choice"});
+                    QuestionID = data._id;
+                }
+           else
+                {
+                    var data  = Types.findOne({name: "Open"});
+                   QuestionID = data._id;
+                }
+
         Questions.insert({
-            QuestionString: "test",
-            QuestionType: 'Open',
+            QuestionString: Question,
+            TypeID: QuestionID,
             PresentationID: currentPresentationID
         });
         
-        //target.QuestionString.value="";
+        target.QuestionString.value="";
             
     },
 });
