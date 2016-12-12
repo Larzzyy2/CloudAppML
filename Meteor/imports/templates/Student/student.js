@@ -1,6 +1,9 @@
 import './student.html';
 
-//helper schrijven voor access code te checken!! 
+Meteor.subscribe('Questions');
+Meteor.subscribe('Presentations');
+
+var code = undefined;
 
 Template.StudentLayout.events({
 
@@ -12,7 +15,7 @@ Template.StudentLayout.events({
     const target = e.target;
     const name = target.name.value; 
     
-    var code = parseInt(name);
+    code = parseInt(name);
     
     console.log(name);
     
@@ -24,4 +27,15 @@ Template.StudentLayout.events({
             FlowRouter.go("/student/"+code);
         }
     }
+});
+
+//Helper for getting all Presentations
+Template.AnswerStudentLayout.helpers({
+    Questions(){
+        //Gets all questions associated with presentation
+        var data = Questions.find({AccesCode: code, Show: true});
+        return data;
+    },
+
+    
 });

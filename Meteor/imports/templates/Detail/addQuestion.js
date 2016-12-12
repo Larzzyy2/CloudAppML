@@ -30,7 +30,8 @@ Template.addQuestion.events({
         Questions.insert({
             QuestionString: question,
             TypeID : TypeID,
-            PresentationID: Session.get('currentPresentationID')
+            PresentationID: Session.get('currentPresentationID'),
+            Show : false
         });
     //Clear input
     target.QuestionString.value = "";
