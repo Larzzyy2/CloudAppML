@@ -2,6 +2,7 @@
 {{> loginButtons}}
 {{#if currentUser}}
 {{> Name}}
+{{> QuestionTypeSelection}}
 {{else}}
 <p>Please login</p>
 {{/if}}
@@ -40,4 +41,11 @@
 </div>
     </h1>
  {{/each}}
+</template>
+
+<template name="QuestionTypeSelection">
+<div>
+    <button id="openQuestion"><img src="/img/open-question-icon.png" width="100px" height="100px"></button>
+    <button id="MultipleChoiceQuestion"><img src="/img/multiplechoice-question-icon.png"  width="100px" height="100px"></button>
+    </div>
 </template>
