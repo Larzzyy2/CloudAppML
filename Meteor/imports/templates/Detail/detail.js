@@ -35,21 +35,20 @@ Template.QuestionOverview.helpers({
         var ID = Session.get('currentPresentationID');
         var data = Questions.find({PresentationID: ID});
         return data;
+    },
+    TypeID(){
+        
     }
 });
 
 Template.QuestionOverview.events({
     "click #edit"(){
-        
+        var presID = Session.get('currentPresentationID');
+        //Session.set('currentQuestionID', this._id);
+        FlowRouter.go('/presentations/'+presID+'/question/'+this._id);
     },
     "click #delete"(){
         Questions.remove(this._id);
     },
 });
 
-Template.Answers.helpers({
-    answeroptions(){
-        var currentPresentationID = Session.get('currentPresentationID');
-        var data = AnswerOptions.find({QuestionID: ""});
-    }
-});
