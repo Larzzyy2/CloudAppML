@@ -1,13 +1,14 @@
 FlowRouter.route('/', {
   action: function() {
       BlazeLayout.render('MainLayout', {userArea:'user', addPresentationArea:'addPresentation', dashboardArea:'dashboard'});
+      Session.set('currentPresentationID', undefined);
   },
 });
 
-FlowRouter.route('/presentations/:id',{
+FlowRouter.route('/presentations/:presentationID',{
     action(params)
     {
-        Session.set('currentPresentationID',params.id);
+        Session.set('currentPresentationID',params.presentationID);
         BlazeLayout.render('DetailLayout');
     },
 });
@@ -22,7 +23,15 @@ FlowRouter.route('/student', {
 FlowRouter.route('/student/:id',{
     action(params)
     {
-        Session.set('currentPresentationID', params.id);
+        Session.set('currentPresentationID', params.PresentationID);
         BlazeLayout.render('AnswerStudentLayout');
     }
 });
+
+FlowRouter.route('/presentations/:presentationID/question/:QuestionID',{
+    action(params)
+    {
+        Session.set('currentQuestionID', params.QuestionID);
+        BlazeLayout.render('QuestionLayout');
+    }
+})

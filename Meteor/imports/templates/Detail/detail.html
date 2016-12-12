@@ -1,4 +1,6 @@
 <template name="DetailLayout"> 
+    {{> loginButtons}}
+    {{#if currentUser}}
 <button id="back">Back</button>
         <div class="container">
         <div class="col-md-12">
@@ -12,6 +14,9 @@
 
         </div>
         </div> 
+    {{else}}
+    <p>Login</p>
+    {{/if}}
 </template>
 
 <template name="Info">
@@ -29,6 +34,7 @@
                     <table id="mytable" class="table table-bordred table-striped">
                         <thead>
                             <th>Question</th>
+                            <th>Type</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </thead>
@@ -36,9 +42,15 @@
                             {{#each Questions}}
                             <tr>
                                 <td>{{QuestionString}}</td>
+                                <td>{{TypeID}}</td>
                                 <td><p title="Edit"><button class="btn btn-primary btn-xs" id="edit"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
                                 <td><p title="Delete"><button class="btn btn-danger btn-xs" id="delete"><span class="glyphicon glyphicon-trash"></span></button></p></td>
                             </tr>
+                            {{#if editQuestion}}
+                            <tr>
+                                <td>edit the question</td>
+                            </tr>
+                            {{/if}}
                             {{/each}} 
                         </tbody>
                     </table>
@@ -48,27 +60,3 @@
     </div>
 </template>
 
-<template name="AddQuestion">
-<p>Your question:</p>
-            <form id="AddQuestion">
-                <input type="text" class="form-control" id="QuestionString">
-                <input type="submit" value="Add Question">
-            </form>
-</template>
-<template name="QuestionTypes">
-            <div class="row" id="questiontype">
-                <button type="button" class="btn btn-primary" id="MultipleChoice">Multiple choice</button>
-                <button type="button" class="btn btn-primary" id="Open">Open question</button>
-            </div>
-</template>
-
-<template name="Answers">
-    {{#if MultipleChoice}}
-            <p>Answers</p>
-            <div class="row">            
-                <input type="text" placeholder="Answer 1">
-            <button type="button" class="addAnswer btn btn-primary" id="AddAnswer">+ Add Answer</button>
-            </div>
-        {{/if}}
-       
-</template>
