@@ -29,6 +29,6 @@ Meteor.publish('Questions', function(presID){//
     //Retruns Question attached to the specific presentation
     return Questions.find({presentationID:presID});
 });
-Meteor.publish('AnswerOptions', function(quesID){//
-    return AnswerOptions.find({questionID: quesID});
+Meteor.publish('AnswerOptions', function(){
+    return AnswerOptions.find();
 })
