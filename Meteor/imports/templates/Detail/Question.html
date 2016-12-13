@@ -1,8 +1,12 @@
 <template name="QuestionLayout">
+<button id="back">Back</button>
 {{> loginButtons}}
 {{#if currentUser}}
 {{> Name}}
 {{> QuestionTypeSelection}}
+{{#if MultipleChoiceSelected}}
+{{> QuestionOptions}}
+{{/if}}
 {{else}}
 <p>Please login</p>
 {{/if}}
@@ -44,8 +48,29 @@
 </template>
 
 <template name="QuestionTypeSelection">
-<div>
-    <button id="openQuestion"><img src="/img/open-question-icon.png" width="100px" height="100px"></button>
-    <button id="MultipleChoiceQuestion"><img src="/img/multiplechoice-question-icon.png"  width="100px" height="100px"></button>
+    <button id="openQuestion">
+
+            <img src="/img/open-question-icon.png" width="100px" height="100px">
+    </button>
+    <button id="multipleChoiceQuestion"><img src="/img/multiplechoice-question-icon.png" width="100px" height="100px"></button>
+
+</template>
+<template name="QuestionSettings">
+
+</template>
+
+<!--Only with Multiple Choice-->
+<template name="QuestionOptions">
+<p>Enter the optins that your audience can vote on.
+</p>
+    <div class="col-md-6" id="choice">
+        <button type="button" id="addOption" class="btn btn-primary">+ Add Option</button>
+        <ul>
+        {{#each option}}
+            <li><input type="text" placeholder="Answer Option"></li><button type="button" id="deleteOption" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>   
+        {{/each}}
+        </ul>
+        <button type="button" class="btn btn-success">Save</button>
     </div>
+    
 </template>
