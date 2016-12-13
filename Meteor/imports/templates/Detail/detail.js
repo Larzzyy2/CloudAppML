@@ -37,7 +37,21 @@ Template.QuestionOverview.helpers({
         return data;
     },
     TypeID(){
-        
+        var MultiplereferenceID = Types.findOne({
+            name: "Multiple Choice"
+        });
+        var OpenreferenceID = Types.findOne({
+            name: "Open"
+        });
+        if(this.TypeID === MultiplereferenceID._id)
+        {
+        return "Multiple Choice";
+        }
+        else if(this.TypeID === OpenreferenceID._id)
+        {
+            return "Open";
+        }
+
     }
 });
 
