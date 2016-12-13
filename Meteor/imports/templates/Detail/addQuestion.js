@@ -37,7 +37,6 @@ Template.addQuestion.events({
             QuestionString: question,
             TypeID : TypeID,
             PresentationID: Session.get('currentPresentationID'),
-            Show : false
             Show : true
         });
         
