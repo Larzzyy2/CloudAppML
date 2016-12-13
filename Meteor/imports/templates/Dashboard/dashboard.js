@@ -24,4 +24,9 @@ Template.dashboard.events({
         presentationID = this._id;
         FlowRouter.go('/presentations/'+presentationID);
     },
+    "click #start" (){
+        console.log("start presentation");
+        presentationID = this._id;
+        FlowRouter.go('/show/' + presentationID);
+    }
 });
