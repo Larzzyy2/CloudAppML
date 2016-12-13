@@ -27,3 +27,6 @@ Meteor.publish('Types', function(){
 Meteor.publish('Questions', function(){
     return Questions.find();
 });
+Meteor.publish('AnswerOptions', function(){
+    return AnswerOptions.find();
+})

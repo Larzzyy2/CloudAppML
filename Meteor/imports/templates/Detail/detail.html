@@ -21,7 +21,33 @@
 
 <template name="Info">
 {{#each presentation}}
-<h1>Name: {{name}}</h1>
+<h1>{{name}}    <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-primary btn-xs" id="editName"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></button>      </h1>
+ 
+    
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">New Presentation name</h4>
+      </div>
+      <div class="modal-body">
+        <form id="newPresentationName">
+          <input id="newPresentationString" class="form-control" autocomplete="off" name="name" type="text">
+            <button type="submit" id="ok" class="btn btn-success">OK</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+</div>
 {{/each}} 
 </template>
 

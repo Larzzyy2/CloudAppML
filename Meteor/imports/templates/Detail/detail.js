@@ -29,6 +29,20 @@ Template.Info.helpers({
         return data;
     },
 });
+Template.Info.events({
+    "submit #newPresentationName"(e){
+        e.preventDefault();
+        const target = e.target;
+        const presentationString = target.name.value;
+        
+        Presentations.update(this._id, {
+            $set: { name: presentationString}
+        });
+    },
+    "click #ok"(){
+         $('#myModal').modal('hide');
+    }
+})
 
 Template.QuestionOverview.helpers({
     Questions(){
@@ -37,7 +51,21 @@ Template.QuestionOverview.helpers({
         return data;
     },
     TypeID(){
-        
+        var MultiplereferenceID = Types.findOne({
+            name: "Multiple Choice"
+        });
+        var OpenreferenceID = Types.findOne({
+            name: "Open"
+        });
+        if(this.TypeID === MultiplereferenceID._id)
+        {
+        return "Multiple Choice";
+        }
+        else if(this.TypeID === OpenreferenceID._id)
+        {
+            return "Open";
+        }
+
     }
 });
 
