@@ -1,12 +1,11 @@
 import './Question.html';
 Meteor.subscribe('Questions',Session.get('currentPresentationID'));
-Meteor.subscribe('AnswerOptions', Session.get('currentQuestionID'));
+Meteor.subscribe('AnswerOptions');
 Template.QuestionLayout.helpers({
     MultipleChoiceSelected(){
         if(Session.equals('QuestionTypeSelected','MultipleChoice'))
             {
                 return true;
-                Session.set('')
             }
         else
             {
@@ -45,10 +44,10 @@ Template.Name.events({
     }
 });
 Template.QuestionTypeSelection.events({
-    "click #openQuestion"(){
+    "click #radioOpen"(){
         Session.set('QuestionTypeSelected', 'Open');
     },
-    "click #multipleChoiceQuestion"(){
+    "click #radioMultiple"(){
         Session.set('QuestionTypeSelected', 'MultipleChoice');
     }
 });
