@@ -1,13 +1,8 @@
 import './addPresentation.html';
-Session.setDefault("newPresentation", false);
 
 //Event for adding a Presentation
 Template.addPresentation.events({
-
-    'click #createPresentation'(){
-        Session.set('newPresentation', true);
-    },
-    'submit #newPresentation'(e){
+    'submit #newPresentationName'(e){
         
     //Creates a new presentation 
     e.preventDefault();
@@ -37,14 +32,10 @@ Template.addPresentation.events({
     
     //Clear form
     target.name.value="";
-        
-    Session.set('newPresentation',false);
+    },
+    "click #ok"(){
+         $('#myModal').modal('hide');
     }
+    
 
-});
-
-Template.addPresentation.helpers({
-    newPresentation: function(){
-        return Session.get('newPresentation');
-    }
 });

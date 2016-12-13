@@ -39,6 +39,9 @@ Template.Name.events({
         Questions.update(this._id, {
             $set: { QuestionString: questionstring}
         });
+    },
+        "click #ok"(){
+         $('#myModal').modal('hide');
     }
 });
 Template.QuestionTypeSelection.events({

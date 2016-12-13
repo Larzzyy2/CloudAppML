@@ -16,7 +16,7 @@
     {{#if currentUser}}
     <h2>Add a presentation</h2>
     {{> Template.dynamic template=addPresentationArea}}
-    <h2>My Presentations</h2>
+    <h2>{{currentUser.services.google.name}}'s presentations</h2>
     {{> Template.dynamic template=dashboardArea}}
     {{/if}}
 </body>

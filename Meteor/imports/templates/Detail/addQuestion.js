@@ -6,6 +6,9 @@ Template.addQuestion.events({
         'click #cancel'(){
         Session.set('newQuestion', false);
     },
+        "click #ok"(){
+         $('#myModal').modal('hide');
+    },
     'submit #newQuestion'(e){
         //TO DO GEEF ZE DE VRAGEN EEN VOLGORDE
         //EN MANIER OM BIJ TE HOUDEN WELKE VRAAG GETOOND WORDT OP HET BORD
