@@ -1,7 +1,7 @@
 import './addQuestion.html';
 Session.setDefault('newQuestion', false);
 Meteor.subscribe('Types')
-Meteor.subscribe('AnswerOptions');
+Meteor.subscribe('AnswerOptions',Session.get('currentQuestionID'));
 Template.addQuestion.events({
         'click #cancel'(){
         Session.set('newQuestion', false);

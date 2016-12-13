@@ -1,6 +1,6 @@
 import './Question.html';
-Meteor.subscribe('Questions');
-Meteor.subscribe('AnswerOptions');
+Meteor.subscribe('Questions',Session.get('currentPresentationID'));
+Meteor.subscribe('AnswerOptions', Session.get('currentQuestionID'));
 Template.QuestionLayout.helpers({
     MultipleChoiceSelected(){
         if(Session.equals('QuestionTypeSelected','MultipleChoice'))

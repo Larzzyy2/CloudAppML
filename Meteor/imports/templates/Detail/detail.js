@@ -2,7 +2,7 @@ import './detail.html';
 import './addQuestion.js'
 
 Meteor.subscribe('Types');
-Meteor.subscribe('Questions')
+Meteor.subscribe('Questions', Session.get('currentPresentationID'));
 Session.setDefault('newQuestion',false);
 
 Template.DetailLayout.events({
@@ -72,7 +72,6 @@ Template.QuestionOverview.helpers({
 Template.QuestionOverview.events({
     "click #edit"(){
         var presID = Session.get('currentPresentationID');
-        //Session.set('currentQuestionID', this._id);
         FlowRouter.go('/presentations/'+presID+'/question/'+this._id);
     },
     "click #delete"(){
