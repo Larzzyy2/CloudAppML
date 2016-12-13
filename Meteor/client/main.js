@@ -7,5 +7,7 @@ import '../imports/templates/Detail/detail.js';
 import '../imports/templates/User/user.js';
 import '../imports/templates/Student/student.js';
 import '../imports/templates/Teacher/teacher.js';
-import '../imports/templates/Detail/Question.js'
+import '../imports/templates/Detail/Question.js';
+import '../imports/templates/Landing/landing.js';
+import '../imports/templates/Main/TeacherMain.js';
 

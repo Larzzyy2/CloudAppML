@@ -2,9 +2,9 @@ import './landing.html';
 
 Template.landing.events({
     "click #student"(){
-        FlowRouter.go('/');
+        FlowRouter.go('/student');
     },
     "click #teacher"(){
-        FlowRouter.go('/');
+        FlowRouter.go('/teacher');
     },
 });

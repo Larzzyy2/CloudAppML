@@ -29,6 +29,12 @@ FlowRouter.route('/show/:presentationID',{
     }
 });
 
+FlowRouter.route('/teacher', {
+    action: function(params) {
+        BlazeLayout.render('TeacherMain');
+    }
+})
+
 FlowRouter.route('/student', {
     action: function(params) {
         BlazeLayout.render('StudentLayout');
