@@ -1,7 +1,7 @@
 import './student.html';
 
 Meteor.subscribe('Questions');
-Meteor.subscribe('Presentations');
+Meteor.subscribe('myPresentations');
 
 var code = undefined;
 
