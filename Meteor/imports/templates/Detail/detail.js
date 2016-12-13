@@ -29,6 +29,20 @@ Template.Info.helpers({
         return data;
     },
 });
+Template.Info.events({
+    "submit #newPresentationName"(e){
+        e.preventDefault();
+        const target = e.target;
+        const presentationString = target.name.value;
+        
+        Presentations.update(this._id, {
+            $set: { name: presentationString}
+        });
+    },
+    "click #ok"(){
+         $('#myModal').modal('hide');
+    }
+})
 
 Template.QuestionOverview.helpers({
     Questions(){
