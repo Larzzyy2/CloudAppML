@@ -26,6 +26,7 @@ Template.dashboard.events({
     },
     "click #start" (){
         console.log("start presentation");
+        Session.set("currentPresentationID", this._id);
         presentationID = this._id;
         FlowRouter.go('/show/' + presentationID);
     }

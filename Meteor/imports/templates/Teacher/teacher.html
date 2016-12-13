@@ -1,8 +1,33 @@
 <template name="ShowPresentationTeacher">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6 col-md-offset-5">
+            {{#each presentation}}
+            <h1>{{AccessCode}}</h1>
+            {{/each}}
             </div>
+        </div>
+        <div style="float:left;">
+            <button type="button" class="btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-arrow-left">    </span>
+            </button>
+        </div>
+        <div style="float:right">
+            <button type="button" class="btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-arrow-right">    </span>
+            </button>
+        </div>
+        <div>
+        
+        <table class="table">
+            <tbody>
+                {{#each question}}
+                <tr>{{QuestionString}}</tr>
+                {{/each}}
+            </tbody>
+            
+        </table>
+        
         </div>
     </div>
 </template>
