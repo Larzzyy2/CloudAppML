@@ -1,7 +1,8 @@
 import './teacher.html';
 
-Meteor.subscribe('Questions');
-Meteor.subscribe('Presentations');
+Meteor.subscribe('Questions',  Session.get('currentPresentationID'));
+
+Meteor.subscribe('myPresentations');
 
 Template.ShowPresentationTeacher.helpers({
     presentation(){

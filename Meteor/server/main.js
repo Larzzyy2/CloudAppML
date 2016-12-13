@@ -11,7 +11,7 @@ Meteor.startup(() => {
 
 });
 
-Meteor.publish('myPresentations', function(){
+Meteor.publish('myPresentations', function(userID){
     var currentUserId = this.userId;
     return Presentations.find({createdBy: currentUserId});
 });

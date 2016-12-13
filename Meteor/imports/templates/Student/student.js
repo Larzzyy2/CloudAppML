@@ -1,7 +1,9 @@
 import './student.html';
 
-Meteor.subscribe('Questions');
-Meteor.subscribe('Presentations');
+var presID = Session.get('currentPresentationID');
+Meteor.subscribe('Questions', presID);
+var currentUserId = Meteor.userId();
+Meteor.subscribe('myPresentations',currentUserId);
 
 var code = undefined;
 
