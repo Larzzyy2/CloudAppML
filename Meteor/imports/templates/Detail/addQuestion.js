@@ -1,6 +1,7 @@
 import './addQuestion.html';
 Session.setDefault('newQuestion', false);
 Meteor.subscribe('Types')
+Meteor.subscribe('AnswerOptions');
 Template.addQuestion.events({
         'click #cancel'(){
         Session.set('newQuestion', false);
@@ -15,24 +16,37 @@ Template.addQuestion.events({
 
         var TypeID = null;
         console.log(type);
-
+        var multiple = null;
         switch(String(type)){
             case 'Open':
                      var data = Types.findOne({name:"Open"});
                     TypeID = data._id;
+                    var multiple = false;
                     break;
             case 'MultipleChoice':
                      var data = Types.findOne({name:"Multiple Choice"});
                     TypeID = data._id;
+                    var multiple = true;
                     break;
         }
 
-        Questions.insert({
+        var QuestionID = Questions.insert({
             QuestionString: question,
             TypeID : TypeID,
             PresentationID: Session.get('currentPresentationID'),
             Show : false
         });
+        
+        //If the question is multiple choice put 2 empty entries in options collection
+        if(multiple){
+            for(var i = 0; i<2; i++)
+                {
+            AnswerOptions.insert({
+                QuestionID: QuestionID,
+                AnswerString: ""
+            });
+                }
+        }
     //Clear input
     target.QuestionString.value = "";
     
