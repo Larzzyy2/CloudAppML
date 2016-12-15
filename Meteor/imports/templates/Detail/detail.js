@@ -7,7 +7,7 @@ Session.setDefault('newQuestion',false);
 
 Template.DetailLayout.events({
    "click #back" (){
-    FlowRouter.go('/');
+    FlowRouter.go('/teacher');
     Session.set('newQuestion', false);
    },
     'click #createQuestion'(){
