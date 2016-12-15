@@ -38,15 +38,27 @@
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table id="mytable" class="table table-bordred table-striped">
-                        <tbody> 
-                            {{#each Questions}}
+                        <tbody> {{#each Questions}}
                             <tr>
-                                <td><form id="new-name"><input type="text" value="{{QuestionString}}"> </form></td>
-                            </tr>
-                            {{/each}} 
-                        </tbody>
+                                <td>{{QuestionString}}</td>
+                            </tr> {{/each}} </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="col-md-12">
+                <form class="form-horizontal" method="post" action="#" id="formAnswer">
+                        <div class="form-group">
+                            <div class="cols-sm-10">
+                                <div class="input-group"> <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Your answer" /> </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group ">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block login-button">submit</button>
+                        </div>
+                        
+                    </form>
             </div>
         </div>
     </div>

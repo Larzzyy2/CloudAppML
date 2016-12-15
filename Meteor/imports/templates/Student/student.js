@@ -2,6 +2,7 @@ import './student.html';
 
 Meteor.subscribe('Questions');
 Meteor.subscribe('myPresentations');
+Meteor.subscribe('answers');
 
 var code = undefined;
 
@@ -38,4 +39,19 @@ Template.AnswerStudentLayout.helpers({
     },
 
     
+});
+
+Template.AnswerStudentLayout.events({
+    'submit #formAnswer' (e) {
+        //Creates a new presentation 
+        e.preventDefault();
+        //Get value from form element
+        const target = e.target;
+        const name = target.name.value;
+        var questionid = Questions.find({ AccesCode: code, Show: true });
+        Answers.insert({
+            Answer: name
+            , QuestionID: questionid
+        });
+    }
 });

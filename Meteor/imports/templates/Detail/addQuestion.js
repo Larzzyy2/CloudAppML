@@ -37,7 +37,7 @@ Template.addQuestion.events({
             QuestionString: question,
             TypeID : TypeID,
             PresentationID: Session.get('currentPresentationID'),
-            Show : true
+            Show : false
         });
         
         //If the question is multiple choice put 2 empty entries in options collection
