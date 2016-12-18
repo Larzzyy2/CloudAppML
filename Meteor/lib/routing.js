@@ -1,15 +1,19 @@
 FlowRouter.route('/', {
   action: function() {
+        Session.set('currentPresentationID', undefined);
+      Session.set('currentQuestionID', undefined);
       BlazeLayout.render('MainLayout', {userArea:'user', addPresentationArea:'addPresentation', dashboardArea:'dashboard'});
-      Session.set('currentPresentationID', undefined);
+
   },
 });
 
 FlowRouter.route('/presentations/:presentationID',{
     action(params)
     {
-        Session.set('currentPresentationID',params.presentationID);
+        Session.set('currentQuestionID', undefined);
+        Session.set('currentPresentationID',params.presentationID);     
         BlazeLayout.render('DetailLayout');
+
     },
 });
 
@@ -17,6 +21,7 @@ FlowRouter.route('/presentations/:presentationID/question/:QuestionID',{
     action(params)
     {
         Session.set('currentQuestionID', params.QuestionID);
+        Session.set('currentPresentationID', params.presentationID);
         BlazeLayout.render('QuestionLayout');
     }
 });

@@ -1,18 +1,6 @@
 import './Question.html';
 Meteor.subscribe('Questions',Session.get('currentPresentationID'));
 Meteor.subscribe('AnswerOptions');
-Template.QuestionLayout.helpers({
-    MultipleChoiceSelected(){
-        if(Session.equals('QuestionTypeSelected','MultipleChoice'))
-            {
-                return true;
-            }
-        else
-            {
-                return false;
-            }
-    },
-});
 Template.QuestionLayout.events({
     "click #back"(){
         FlowRouter.go('/presentations/'+Session.get('currentPresentationID'));
@@ -43,25 +31,49 @@ Template.Name.events({
          $('#myModal').modal('hide');
     }
 });
-Template.QuestionTypeSelection.events({
+Template.EditQuestion.events({
+    "submit #updateQuestion"(e){
+        e.preventDefault();
+        const target = e.target;
+        var options = target.Option;
+        console.log("type selected: " + target.type.value);
+        
+        var typename = null;
+        switch(Session.get('QuestionTypeSelected'))
+            {
+                case 'MultipleChoice':
+                    typename ="Multiple Choice";
+                    break;
+                case 'Open':
+                    typename ="Open";
+                    break;
+            }
+        
+        console.log("new Question type is: " + typename);
+        
+        var data = Types.findOne({
+            name: typename
+        });
+        
+        console.log("Type Data " + data);
+        
+        var ID = data._id;
+        console.log("type ID : " + ID);
+        
+        var QuestionID = Session.get('currentQuestionID');
+        
+        Questions.update(QuestionID,{
+            $set: {TypeID: ID}
+        });
+    
+    },
     "click #radioOpen"(){
         Session.set('QuestionTypeSelected', 'Open');
     },
     "click #radioMultiple"(){
         Session.set('QuestionTypeSelected', 'MultipleChoice');
-    }
-});
-
-Template.QuestionOptions.helpers({
-    option(){
-        var QuestionID = Session.get('currentQuestionID')
-        return AnswerOptions.find({
-            QuestionID: QuestionID
-        })
-    }
-});
-Template.QuestionOptions.events({
-    "click #addOption"(){
+    },
+        "click #addOption"(){
         var QuestionID = Session.get('currentQuestionID')
           AnswerOptions.insert({
                 QuestionID: QuestionID,
@@ -71,5 +83,24 @@ Template.QuestionOptions.events({
     "click #deleteOption"(){
         AnswerOptions.remove(this._id);
     }
-})
+});
+
+Template.EditQuestion.helpers({
+    option(){
+        var QuestionID = Session.get('currentQuestionID')
+        return AnswerOptions.find({
+            QuestionID: QuestionID
+        });
+    },
+       MultipleChoiceSelected(){
+        if(Session.equals('QuestionTypeSelected','MultipleChoice'))
+            {
+                return true;
+            }
+        else
+            {
+                return false;
+            }
+    }
+});
 

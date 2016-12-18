@@ -3,11 +3,7 @@
 {{> loginButtons}}
 {{#if currentUser}}
 {{> Name}}
-{{> QuestionTypeSelection}}
-{{> QuestionSettings}}
-{{#if MultipleChoiceSelected}}
-{{> QuestionOptions}}
-{{/if}}
+{{> EditQuestion}}
 {{else}}
 <p>Please login</p>
 {{/if}}
@@ -48,28 +44,28 @@
  {{/each}}
 </template>
 
-<template name="QuestionTypeSelection">
-    <label><input type="radio" name="type" value="open" id="radioOpen"><img src="/img/open-question-icon.png" width="50px" height="50px"></label>
-<label><input type="radio" name="type" id="radioMultiple" value="Multiple"><img src="/img/multiplechoice-question-icon.png" width="50px" height="50px"></label>
-
-</template>
-
-<template name="QuestionSettings">
-<p>Here goes settings about the questions</p>
-</template>
-
-<!--Only with Multiple Choice-->
-<template name="QuestionOptions">
-<p>Enter the options that your audience can vote on.
-</p>
-    <div class="col-md-6" id="choice">
+<template name="EditQuestion">
+    <form id="updateQuestion">
+    <label>
+        <input type="radio" name="type" value="Open" id="radioOpen"><img src="/img/open-question-icon.png" width="50px" height="50px">
+    </label>
+        
+    <label>
+    <input type="radio" name="type" id="radioMultiple" value="Multiple"><img src="/img/multiplechoice-question-icon.png" width="50px" height="50px">
+    </label>
+    
+    {{#if MultipleChoiceSelected}}
+        <div class="col-md-6" id="choice">
         <button type="button" id="addOption" class="btn btn-primary">+ Add Option</button>
         <ul>
         {{#each option}}
-            <li><input type="text" placeholder="Answer Option"></li><button type="button" id="deleteOption" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>   
+            <li><input name="Option"  type="text" placeholder="Answer Option" class="answerOption"></li><button type="button" id="deleteOption" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>   
         {{/each}}
         </ul>
-        <button type="button" id="updateQuestion" class="btn btn-success">Save</button>
+        
     </div>
-    
+    {{/if}}
+    <button type="submit" id="submitQuestion" class="btn btn-success">Save</button>
+    </form>
+
 </template>
