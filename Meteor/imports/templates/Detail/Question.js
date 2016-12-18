@@ -36,8 +36,36 @@ Template.EditQuestion.events({
         e.preventDefault();
         const target = e.target;
         var options = target.Option;
-        console.log(options);
-        console.log(options.value);
+        console.log("type selected: " + target.type.value);
+        
+        var typename = null;
+        switch(Session.get('QuestionTypeSelected'))
+            {
+                case 'MultipleChoice':
+                    typename ="Multiple Choice";
+                    break;
+                case 'Open':
+                    typename ="Open";
+                    break;
+            }
+        
+        console.log("new Question type is: " + typename);
+        
+        var data = Types.findOne({
+            name: typename
+        });
+        
+        console.log("Type Data " + data);
+        
+        var ID = data._id;
+        console.log("type ID : " + ID);
+        
+        var QuestionID = Session.get('currentQuestionID');
+        
+        Questions.update(QuestionID,{
+            $set: {TypeID: ID}
+        });
+    
     },
     "click #radioOpen"(){
         Session.set('QuestionTypeSelected', 'Open');
