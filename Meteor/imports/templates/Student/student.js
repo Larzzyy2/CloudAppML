@@ -47,7 +47,8 @@ Template.AnswerStudentLayout.events({
         e.preventDefault();
         //Get value from form element
         const target = e.target;
-        const name = target.name.value;
+        const name = target.Name.value;
+        debugger
         var questionid = Questions.find({ AccesCode: code, Show: true });
         Answers.insert({
             Answer: name
