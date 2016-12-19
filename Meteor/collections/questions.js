@@ -4,16 +4,20 @@ Questions = new Mongo.Collection('questions');
 //Question
 //TypeID
 
-//QuestionSchema = new SimpleSchema({
-//QuestionString : {
-  //      type: String
- //   },
- //   QuestionType: {
-  //      type: String,
-  //      allowedValues: ['Open', 'Multiple']
-  //  },
-  //  PresentationID: {
-  //      type: String
- //   }
-//});
-//Questions.attachSchema(QuestionSchema);
+/*
+QuestionSchema = new SimpleSchema({
+QuestionString : {
+        type: String
+    },
+    TypeID: {
+        type: String
+    },
+    QuestionID: {
+        type: String
+    },
+    PresentationID: {
+        type: String
+    },
+});
+Questions.attachSchema(QuestionSchema);
+*/
