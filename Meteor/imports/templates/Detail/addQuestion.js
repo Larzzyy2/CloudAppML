@@ -32,7 +32,6 @@ Template.addQuestion.events({
                     var multiple = true;
                     break;
         }
-
         var QuestionID = Questions.insert({
             QuestionString: question,
             TypeID : TypeID,

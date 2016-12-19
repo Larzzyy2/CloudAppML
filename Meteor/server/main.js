@@ -31,4 +31,8 @@ Meteor.publish('Questions', function(presID){//
 });
 Meteor.publish('AnswerOptions', function(){
     return AnswerOptions.find();
-})
+});
+
+Meteor.publish('Answers', function(){
+    return Answers.find();
+});

@@ -2,7 +2,7 @@ import './student.html';
 
 Meteor.subscribe('Questions');
 Meteor.subscribe('myPresentations');
-Meteor.subscribe('answers');
+Meteor.subscribe('Answers');
 
 var code = undefined;
 
@@ -34,7 +34,7 @@ Template.StudentLayout.events({
 Template.AnswerStudentLayout.helpers({
     Questions(){
         //Gets all questions associated with presentation
-        var data = Questions.find({AccesCode: code, Show: true});
+        var data = Questions.find({ Show: true});
         return data;
     },
 
@@ -48,10 +48,12 @@ Template.AnswerStudentLayout.events({
         //Get value from form element
         const target = e.target;
         const name = target.Name.value;
-        debugger
-        var questionid = Questions.find({ AccesCode: code, Show: true });
+        var data =  Questions.findOne({ Show: true });
+        console.log(data);
+        console.log(data._id);
+        var questionid = data._id;
         Answers.insert({
-            Answer: name
+            Answer: Name
             , QuestionID: questionid
         });
     }
