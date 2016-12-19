@@ -5,20 +5,20 @@ Presentations = new Mongo.Collection('presentations');
 //Date
 
 
-//PresentationSchema = new SimpleSchema({
-    //name : {
-     //   type: String
-    //},
-    //createdBy: {
-    //    type: String
-  //  },
-//    AccessCode: {
-        //type: Number,
-        //min: 0,
-      //  max: 100000
-    //},
-  //  dateCreated: {
-//        type: Date
-  //  }
-//});
-//Presentations.attachSchema(PresentationSchema);
+PresentationSchema = new SimpleSchema({
+    name : {
+        type: String
+    },
+    createdBy: {
+        type: String
+    },
+    dateCreated: {
+        type: Date
+    },
+        AccessCode: {
+        type: Number,
+        min: 0,
+        max: 100000
+    },
+});
+Presentations.attachSchema(PresentationSchema);

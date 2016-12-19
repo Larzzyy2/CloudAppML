@@ -21,9 +21,9 @@
         
         <table class="table">
             <tbody>
-                {{#each question}}
-                <tr>{{QuestionString}}</tr>
-                {{/each}}
+                {{#with question}}
+                <tr>{{question.QuestionString}}</tr>
+                {{/with}}
             </tbody>
             
         </table>
