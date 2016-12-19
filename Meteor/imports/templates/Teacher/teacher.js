@@ -4,40 +4,41 @@ Meteor.subscribe('Questions',  Session.get('currentPresentationID'));
 
 Meteor.subscribe('myPresentations');
 
-var counter = 1;
-
+var counter = 0;
+var data = null;
 Template.ShowPresentationTeacher.helpers({
     presentation(){
         var PresID = Session.get('currentPresentationID');
         var data = Presentations.find({
             PresentationID: PresID
-        });
+        })
     return data;
     },
     question(){
         var PresID = Session.get('currentPresentationID');
         //Gets all questions associated with presentation
-        var data = Questions.find({PresentationID: PresID});
-        return data;
+        data = Questions.find({PresentationID: PresID}).fetch();
+        console.log(data[counter]);
+        console.log(counter);
+        return data[counter];
         },
-    startPresentation(){
-        Questions.update({PresentationID: PresID, index: 1},{$set:{show: true}});
-    }
-    
 });
-
 
 Template.ShowPresentationTeacher.events({
     "click #left"(){
-        var PresID = Session.get('currentPresentationID');
+        counter--;
+/*        var PresID = Session.get('currentPresentationID');
         Questions.update({PresentationID: PresID, index: counter},{$set:{show: false}});
         counter--;
-        Questions.update({PresentationID: PresID, index: counter},{$set:{show: true}});
+        Questions.update({PresentationID: PresID, index: counter},{$set:{show: true}});*/
     },
     "click #right"(){
-        var PresID = Session.get('currentPresentationID');
+        counter++;
+        console.log(counter);
+        console.log(data[counter]);
+      /*  var PresID = Session.get('currentPresentationID');
         Questions.update({PresentationID: PresID, index: counter},{$set:{show: false}});
         counter++;
         Questions.update({PresentationID: PresID, index: counter},{$set:{show: true}});
-    },
+    */},
 });

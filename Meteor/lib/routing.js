@@ -29,7 +29,7 @@ FlowRouter.route('/presentations/:presentationID/question/:QuestionID',{
 FlowRouter.route('/show/:presentationID',{
     action(params)
     {
-        Session.set('currentPresentationID', params.PresentationID);
+        Session.set('currentPresentationID', params.presentationID);
         BlazeLayout.render('ShowPresentationTeacher');
     }
 });
