@@ -47,13 +47,14 @@ Template.AnswerStudentLayout.events({
         e.preventDefault();
         //Get value from form element
         const target = e.target;
-        const name = target.Name.value;
+        const AnswerString = target.answer.value;
+        
         var data =  Questions.findOne({ Show: true });
         console.log(data);
         console.log(data._id);
         var questionid = data._id;
         Answers.insert({
-            Answer: Name
+            Answer: AnswerString
             , QuestionID: questionid
         });
     }
