@@ -32,13 +32,17 @@ Template.Name.events({
     }
 });
 Template.EditQuestion.events({
-    "submit #updateQuestion"(e){
-        e.preventDefault();
-        const target = e.target;
-        var options = target.Option;
+    "submit #updateQuestion"(event){
+        event.preventDefault();
+
+        
+        const target = event.target;
+        var QuestionID = Session.get('currentQuestionID');
+        var typename = null;
+        var data = null;
+        var typeID = null;
         console.log("type selected: " + target.type.value);
         
-        var typename = null;
         switch(Session.get('QuestionTypeSelected'))
             {
                 case 'MultipleChoice':
@@ -55,17 +59,32 @@ Template.EditQuestion.events({
             name: typename
         });
         
-        console.log("Type Data " + data);
+        var typeID = data._id;
+        console.log("type ID : " + typeID);
         
-        var ID = data._id;
-        console.log("type ID : " + ID);
         
-        var QuestionID = Session.get('currentQuestionID');
         
         Questions.update(QuestionID,{
-            $set: {TypeID: ID}
+            $set: {TypeID: typeID}
         });
-    
+        
+        //Update Answer Options
+        console.log(event.target.Option);
+        for(var i = 0; i< event.target.Option.length; i++){
+            //GET values from input fields
+            value = event.target.Option[i].value;
+            optionId = event.target.Option[i].dataset.id;
+            
+            //Log to console
+            console.log('option value:' + value);
+            console.log('option ID: ' + optionId);
+            
+            //update
+            AnswerOptions.update(optionId,{
+                $set: {AnswerString: value}
+            });
+        }
+        
     },
     "click #radioOpen"(){
         Session.set('QuestionTypeSelected', 'Open');
@@ -85,6 +104,18 @@ Template.EditQuestion.events({
     }
 });
 
+Template.EditQuestion.onRendered(function(){
+    
+     if(Session.equals('QuestionTypeSelected','MultipleChoice'))
+         {
+             $("#radioMultiple").prop("checked",true);
+         }
+        else
+            {
+                $("#radioOpen").prop("checked",true);
+            }
+});
+
 Template.EditQuestion.helpers({
     option(){
         var QuestionID = Session.get('currentQuestionID')
@@ -101,6 +132,16 @@ Template.EditQuestion.helpers({
             {
                 return false;
             }
-    }
+    },
+    OpenSelected(){
+            if(Session.equals('QuestionTypeSelected','Open'))
+            {
+                return true;
+            }
+        else
+            {
+                return false;
+            }
+    },
 });
 
