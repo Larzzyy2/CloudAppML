@@ -5,28 +5,34 @@ Meteor.subscribe('Questions',  Session.get('currentPresentationID'));
 Meteor.subscribe('myPresentations');
 
 var counter = 0;
-var data = null;
+var counterTracker = new Tracker.Dependency();
+var presentationData = null;
+var questionData = null;
+
+
 Template.ShowPresentationTeacher.helpers({
     presentation(){
         var PresID = Session.get('currentPresentationID');
-        var data = Presentations.find({
+        presentationData = Presentations.find({
             PresentationID: PresID
         })
-    return data;
+    return presentationData;
     },
     question(){
         var PresID = Session.get('currentPresentationID');
         //Gets all questions associated with presentation
-        data = Questions.find({PresentationID: PresID}).fetch();
-        console.log(data[counter]);
-        console.log(counter);
-        return data[counter];
+        questionData = Questions.find({PresentationID: PresID}).fetch();
+        counterTracker.depend();
+        console.log("QuestionData: " + questionData[counter]);
+        return questionData[counter];
         },
 });
 
 Template.ShowPresentationTeacher.events({
     "click #left"(){
         counter--;
+        counterTracker.changed();
+        console.log("QuestionData: " + questionData[counter]);
 /*        var PresID = Session.get('currentPresentationID');
         Questions.update({PresentationID: PresID, index: counter},{$set:{show: false}});
         counter--;
@@ -34,8 +40,8 @@ Template.ShowPresentationTeacher.events({
     },
     "click #right"(){
         counter++;
-        console.log(counter);
-        console.log(data[counter]);
+        counterTracker.changed();
+        console.log("QuestionData: " + questionData[counter]);
       /*  var PresID = Session.get('currentPresentationID');
         Questions.update({PresentationID: PresID, index: counter},{$set:{show: false}});
         counter++;
