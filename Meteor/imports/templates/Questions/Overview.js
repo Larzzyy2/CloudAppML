@@ -1,4 +1,4 @@
-import './detail.html';
+import './Overview.html';
 import './addQuestion.js'
 
 Meteor.subscribe('Types');
@@ -46,26 +46,10 @@ Template.Info.events({
 
 Template.QuestionOverview.helpers({
     Questions(){
-        var ID = Session.get('currentPresentationID');
-        var data = Questions.find({PresentationID: ID});
-        return data;
+        return Questions.find({PresentationID: Session.get('currentPresentationID')});
     },
-    TypeID(){
-        var MultiplereferenceID = Types.findOne({
-            name: "Multiple Choice"
-        });
-        var OpenreferenceID = Types.findOne({
-            name: "Open"
-        });
-        if(this.TypeID === MultiplereferenceID._id)
-        {
-        return "Multiple Choice";
-        }
-        else if(this.TypeID === OpenreferenceID._id)
-        {
-            return "Open";
-        }
-
+    Type(){
+        return this.TypeID.displayName;
     }
 });
 
@@ -75,7 +59,7 @@ Template.QuestionOverview.events({
         FlowRouter.go('/presentations/'+presID+'/question/'+this._id);
     },
     "click #delete"(){
-        Questions.remove(this._id);
+        Meteor.call("Questions.remove", this._id);
     },
 });
 

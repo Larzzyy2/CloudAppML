@@ -5,8 +5,8 @@ import './accounts-config.js'
 Meteor.startup(() => {
 
   if (Types.find().count() === 0) {
-      Types.insert({name: 'Multiple Choice'});
-      Types.insert({name: 'Open'});
+      Types.insert({name: 'MultipleChoice', displayName: 'Multiple Choice Question'});
+      Types.insert({name: 'Open', displayName: 'Open Question'});
   }
 
 });

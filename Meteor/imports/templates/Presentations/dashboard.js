@@ -7,9 +7,8 @@ Meteor.subscribe('myPresentations');
 Template.dashboard.helpers({
     presentations(){
         //Gets all presentations associated with user
-        var currentUserId = Meteor.userId();
-        var data = Presentations.find({createdBy: currentUserId});
-        return data;
+        return Presentations.find({createdBy: Meteor.userId()});
+
     },
 
     
@@ -17,7 +16,8 @@ Template.dashboard.helpers({
 Template.dashboard.events({
    "click #delete" (){
        //Removes the selected presentation from collection
-       Presentations.remove(this._id);
+       var presID = this._id;
+       Meteor.call('Presentations.remove', presID);
        
    },
     "click #edit" (){
