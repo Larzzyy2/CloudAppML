@@ -1,6 +1,7 @@
 import './Question.html';
 Meteor.subscribe('Questions',Session.get('currentPresentationID'));
 Meteor.subscribe('AnswerOptions');
+
 Template.QuestionLayout.events({
     "click #back"(){
         FlowRouter.go('/presentations/'+Session.get('currentPresentationID'));
@@ -10,11 +11,10 @@ Template.QuestionLayout.events({
 Template.Name.helpers({
     question(){
         var ID = Session.get('currentQuestionID');
-        var data = Questions.find({
+        return Questions.find({
             _id: ID
         });
-        return data;
-    },
+    }
 });
 
 Template.Name.events({
@@ -33,14 +33,14 @@ Template.EditQuestion.events({
     "submit #updateQuestion"(e){
         e.preventDefault();
         const target = e.target;
-        const Type = target.type.value;
-        const TypeID = Types.findOne({
-            name: Type
+        const TypeValue = target.type.value;
+        const Type = Types.findOne({
+            name: TypeValue
         })._id;
         const currentQuestionID = Session.get('currentQuestionID');
         
         //Updates the Question Type
-        Meteor.call("Questions.update.type", currentQuestionID, TypeID);
+        Meteor.call("Questions.update.type", currentQuestionID, Type);
         
         console.log(target);
         //Updates the AnswerOptions
@@ -87,15 +87,32 @@ Template.EditQuestion.onRendered(function(){
                 $("#radioMultiple").prop("checked",false);
                 $("#radioOpen").prop("checked",true);
             }*/
+
 });
 
 Template.EditQuestion.helpers({
     option(){
+        //returns all Answer Options attached to a question
         var QuestionID = Session.get('currentQuestionID')
         return AnswerOptions.find({
             QuestionID: QuestionID
         });
     },
+    
+    currenttype(){
+        
+    var currentType = Questions.findOne({
+        _id: Session.get('currentQuestionID')}).Type
+    
+    console.log(currentType);
+    
+    Session.set('currentQuestionType', currentType);
+
+console.log(Session.get('currentQuestionType'));
+        
+        return currentType;
+    },
+    
        MultipleChoiceSelected(){
         if($("#radioMultiple").checked){
                 return true;

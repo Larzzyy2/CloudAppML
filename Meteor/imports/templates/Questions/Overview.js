@@ -49,7 +49,7 @@ Template.QuestionOverview.helpers({
         return Questions.find({PresentationID: Session.get('currentPresentationID')});
     },
     Type(){
-        return this.TypeID.displayName;
+        return this.Type;
     }
 });
 

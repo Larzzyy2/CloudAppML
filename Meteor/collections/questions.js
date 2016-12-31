@@ -16,7 +16,7 @@ Meteor.methods({
         //Insert Question
         var QuestionID = Questions.insert({
             QuestionString: question,
-            TypeID : TypeID,
+            Type : type,
             PresentationID: presID,
             Show : true
         });

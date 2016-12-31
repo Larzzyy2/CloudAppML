@@ -45,13 +45,15 @@
 </template>
 
 <template name="EditQuestion">
+    
+    {{currenttype}}
     <form id="updateQuestion">
     <label>
-        <input type="radio" name="type" id="radioOpen" value="Open" class="radiobutton"><img src="/img/open-question-icon.png" width="50px" height="50px">
+        <input type="radio" name="type" id="radioOpen" value="Open" class="radiobutton">Open Question
     </label>
         
     <label>
-    <input type="radio" name="type" id="radioMultiple" value="MultipleChoice" class="radiobutton"><img src="/img/multiplechoice-question-icon.png" width="50px" height="50px">
+    <input type="radio" name="type" id="radioMultiple" value="MultipleChoice" class="radiobutton">Multiple Choice Question
     </label>
     
     {{#if MultipleChoiceSelected}}
