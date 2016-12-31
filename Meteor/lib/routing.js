@@ -21,7 +21,16 @@ FlowRouter.route('/presentations/:presentationID/question/:QuestionID',{
     action(params)
     {
         Session.set('currentQuestionID', params.QuestionID);
+        
+        //GENERATES EXCEPTION WHEN PAGE IS REFRESHED
         Session.set('currentPresentationID', params.presentationID);
+        var type = Questions.findOne({
+            _id: params.QuestionID
+            }).Type;
+        Session.set('currentQuestionType', type);
+        //
+        console.log("Question Type Session in routing: " + Session.get('currentQuestionType'));
+        
         BlazeLayout.render('QuestionLayout');
     }
 });
