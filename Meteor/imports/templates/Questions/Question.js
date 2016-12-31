@@ -31,6 +31,7 @@ Template.Name.events({
 });
 Template.EditQuestion.events({
     "submit #updateQuestion"(e){
+        //BUTTON SAVE IS PRESSED
         e.preventDefault();
         const target = e.target;
         const TypeValue = target.type.value;
@@ -42,52 +43,50 @@ Template.EditQuestion.events({
         //Updates the Question Type
         Meteor.call("Questions.update.type", currentQuestionID, Type);
         
-        console.log(target);
-        //Updates the AnswerOptions
-         for(var i = 0; i< target.Option.length; i++){
-            var value = target.Option[i].value;
-            var optionId = target.Option[i].dataset.id;
-            Meteor.call("Questions.update.AnswerOptions", optionId, value);
-            }
         
+        //If the question is multiple choice
+        
+        if(Session.equals("currentQuestionType", "MultipleChoice"))
+            {
+                //Updates the AnswerOptions
+                for(var i = 0; i< target.Option.length; i++){
+                var value = target.Option[i].value;
+                var optionId = target.Option[i].dataset.id;
+                Meteor.call("Questions.update.AnswerOptions", optionId, value);
+                }
+            }
+        FlowRouter.go("/presentations/"+Session.get("currentPresentationID"));
     },
-    /*"change .radiobutton"(){
-        console.log("radiobutton changed");
-        if($('#radioOpen').prop("checked", true))
-            {
-                $('#radioMultiple').prop("checked", false);
-                console.log("if open is checked");
-            }
-        if($('#radioMultiple').prop("checked", true))
-            {
-                $('#radioOpen').prop("checked", false)
-                console.log("mutliple checked");
-            }
+    "change .radiobutton"(e){
+       const currentTarget = e.currentTarget;
+        var currentType = currentTarget.value;  
+        Session.set('currentQuestionType', currentType);
     },
     "click #addOption"(){
-        var QuestionID = Session.get('currentQuestionID')
-          AnswerOptions.insert({
-                QuestionID: QuestionID,
-                AnswerString: ""
-            });*/
+        var QuestionID = Session.get('currentQuestionID');
+        Meteor.call("AnswerOptions.add.empty" , QuestionID);
+    },
     "click #deleteOption"(){
-        AnswerOptions.remove(this._id);
+        Meteor.call("AnswerOptions.remove", this._id)
+        
     }
 });
 
 Template.EditQuestion.onRendered(function(){
-   /* 
-     if(Session.equals('QuestionTypeSelected','MultipleChoice'))
-         {
-             $("#radioOpen").prop("checked",false);
-             $("#radioMultiple").prop("checked",true);
-         }
-        else
-            {
-                $("#radioMultiple").prop("checked",false);
-                $("#radioOpen").prop("checked",true);
-            }*/
-
+    //Checks the correct Type when the template is rendered.
+    var currentType = Session.get('currentQuestionType');
+    
+    switch(currentType)
+        {
+            case "Open":
+                $("#radioMultiple").prop('checked', false);
+                $("#radioOpen").prop('checked', true);
+                break;
+            case "MultipleChoice":
+                $("#radioOpen").prop('checked', false);
+                $("#radioMultiple").prop('checked', true);
+                break;
+        }
 });
 
 Template.EditQuestion.helpers({
@@ -99,27 +98,15 @@ Template.EditQuestion.helpers({
         });
     },
     
-    currenttype(){
-        
-    var currentType = Questions.findOne({
-        _id: Session.get('currentQuestionID')}).Type
-    
-    console.log(currentType);
-    
-    Session.set('currentQuestionType', currentType);
-
-console.log(Session.get('currentQuestionType'));
-        
-        return currentType;
-    },
-    
-       MultipleChoiceSelected(){
-        if($("#radioMultiple").checked){
-                return true;
-            }
-        else
+    MultipleChoiceSelected(){
+        switch(Session.get('currentQuestionType'))
             {
-                return false;
+                case "MultipleChoice":
+                    return true;
+                    break;
+                case "Open":
+                    return false;
+                    break;
             }
     },
 

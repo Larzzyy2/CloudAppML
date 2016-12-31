@@ -9,3 +9,17 @@ AnswerOptions.schema = new SimpleSchema({
 });
 
 AnswerOptions.attachSchema(AnswerOptions.schema);*/
+
+Meteor.methods({
+    "AnswerOptions.add.empty" (QuestionID){
+                
+          AnswerOptions.insert({
+                QuestionID: QuestionID,
+                AnswerString: ""
+            });
+    },
+    
+    "AnswerOptions.remove"(ID){
+        AnswerOptions.remove(ID);
+    }
+})
