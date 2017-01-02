@@ -13,7 +13,7 @@ Meteor.startup(() => {
 
 Meteor.publish('myPresentations', function(userID){
     var currentUserId = this.userId;
-    return Presentations.find({createdBy: currentUserId});
+    return Presentations.find({userID: currentUserId});
 });
 
 Meteor.publish('googleDetails', function(){

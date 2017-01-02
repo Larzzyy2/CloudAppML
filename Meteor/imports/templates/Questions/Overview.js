@@ -49,7 +49,8 @@ Template.QuestionOverview.helpers({
         return Questions.find({PresentationID: Session.get('currentPresentationID')});
     },
     Type(){
-        return this.Type;
+        console.log(this.toString());
+        return this.Type.displayName.toString();
     }
 });
 

@@ -7,7 +7,7 @@ Meteor.subscribe('myPresentations');
 Template.dashboard.helpers({
     presentations(){
         //Gets all presentations associated with user
-        return Presentations.find({createdBy: Meteor.userId()});
+        return Presentations.find({userID: Meteor.userId()});
 
     },
 

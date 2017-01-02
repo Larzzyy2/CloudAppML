@@ -3,12 +3,12 @@ Answers = new Mongo.Collection('answers')
 //QuestionID
 //Name
 
-/*AnswerSchema = new SimpleSchema({
-    Answer: {
+AnswerSchema = new SimpleSchema({
+    AnswerString: {
         type: String
     },
     QuestionID: {
         type: String
     }
 });
-Answers.attachSchema(AnswerSchema);*/
+Answers.attachSchema(AnswerSchema);

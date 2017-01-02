@@ -55,6 +55,8 @@ Template.EditQuestion.events({
                 Meteor.call("Questions.update.AnswerOptions", optionId, value);
                 }
             }
+        
+        //Go back to overview
         FlowRouter.go("/presentations/"+Session.get("currentPresentationID"));
     },
     "change .radiobutton"(e){
