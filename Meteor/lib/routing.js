@@ -26,7 +26,7 @@ FlowRouter.route('/presentations/:presentationID/question/:QuestionID',{
         Session.set('currentPresentationID', params.presentationID);
         var type = Questions.findOne({
             _id: params.QuestionID
-            }).Type;
+            }).Type.name;
         Session.set('currentQuestionType', type);
         //
         console.log("Question Type Session in routing: " + Session.get('currentQuestionType'));

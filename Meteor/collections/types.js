@@ -3,3 +3,13 @@ Types = new Mongo.Collection('types');
 //Naam
 //QuestionID
 
+QuestionSchema = new SimpleSchema({
+    name: {
+        type: String
+    },
+    displayName: {
+        type: String
+    
+    }
+});
+Types.attachSchema(QuestionSchema);
