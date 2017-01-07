@@ -24,7 +24,8 @@ Template.ShowPresentationTeacher.helpers({
         return RoomData;
     },
     currentQuestion(){
-         return Questions.findOne({_id: RoomData.currentQuestionID}).QuestionString;
+        counterTracker.depend();
+         return Questions.findOne({_id: allQuestions[counter]._id}).QuestionString;
     },
 });
 
