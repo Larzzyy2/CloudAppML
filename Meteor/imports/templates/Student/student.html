@@ -36,14 +36,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="table-responsive">
-                    <table id="mytable" class="table table-bordred table-striped">
-                        <tbody> {{#each Questions}}
-                            <tr>
-                                <td>{{QuestionString}}</td>
-                            </tr> {{/each}} </tbody>
-                    </table>
-                </div>
+                {{currentQuestion}}
             </div>
             <div class="col-md-12">
                 <form class="form-horizontal" id="formAnswer">

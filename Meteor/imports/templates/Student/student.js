@@ -5,8 +5,11 @@ Meteor.subscribe('myPresentations');
 Meteor.subscribe('Answers');
 Meteor.subscribe('ClassRooms')
 
+RoomData = null;
+allQuestions = null;
 
-var code = undefined;
+
+code = null;
 
 Template.StudentLayout.events({
 
@@ -32,15 +35,23 @@ Template.StudentLayout.events({
     }
 });
 
+Template.AnswerStudentLayout.onCreated(function(){
+    RoomData = ClassRooms.findOne({AccessCode : code});
+    
+    var currentPresentationID = RoomData.PresentationID;
+    allQuestions = Questions.find({
+        PresentationID: currentPresentationID
+    }).fetch();
+});
+
 //Helper for getting all Presentations
 Template.AnswerStudentLayout.helpers({
-    Questions(){
-        //Gets all questions associated with presentation
-        var data = Questions.find({ Show: true});
-        return data;
+    RoomData(){
+        return RoomData;
     },
-
-    
+    currentQuestion(){
+        return Questions.findOne({_id : RoomData.currentQuestionID}).QuestionString;
+    }
 });
 
 Template.AnswerStudentLayout.events({
