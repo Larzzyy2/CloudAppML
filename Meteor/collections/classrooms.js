@@ -58,5 +58,15 @@ Meteor.methods({
     },
     "ClassRooms.remove"(ClassRoomID){
         Classrooms.remove({_id: ClassRoomID});
+    },
+    "ClassRooms.Answer"(ID, data, AnswerString){
+        var questionid = ID;
+        var answerstring = AnswerString;
+        debugger;
+        Answers.insert({
+            AnswerString: answerstring
+            , QuestionID: questionid
+        });
+        debugger;
     }
 });

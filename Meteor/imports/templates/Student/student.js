@@ -3,6 +3,7 @@ import './student.html';
 Meteor.subscribe('Questions');
 Meteor.subscribe('myPresentations');
 Meteor.subscribe('Answers');
+Meteor.subscribe('ClassRooms')
 
 
 var code = undefined;
@@ -21,9 +22,9 @@ Template.StudentLayout.events({
     
     console.log(name);
     
-    if(Presentations.findOne({AccessCode: code},{AccesCode: 1})===undefined)
+    if(ClassRooms.findOne({AccessCode: code},{AccesCode: 1})===undefined)
     {
-        window.alert("Presentation doesn't exist!");
+        window.alert("Classroom does not exist!");
     }
         else{
             FlowRouter.go("/student/"+code);
@@ -49,14 +50,8 @@ Template.AnswerStudentLayout.events({
         //Get value from form element
         const target = e.target;
         const AnswerString = target.answer.value;
-        
-        var data =  Questions.findOne({ Show: true });
-        console.log(data);
-        console.log(data._id);
-        var questionid = data._id;
-        Answers.insert({
-            Answer: AnswerString
-            , QuestionID: questionid
-        });
+        var ID = 0; //NOG JUISTE ID MEEGEVEN, LARS NOG MEE BEZIG
+        var data =  Questions.findOne({ Show: true }); //currentQuestionID???????????????????
+        Meteor.call('ClassRooms.Answer', ID, data, AnswerString);
     }
 });
