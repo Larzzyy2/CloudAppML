@@ -16,8 +16,8 @@ Template.dashboard.helpers({
 Template.dashboard.events({
    "click #delete" (){
        //Removes the selected presentation from collection
-       var presID = this._id;
-       Meteor.call('Presentations.remove', presID);
+       var presentationID = this._id;
+       Meteor.call('Presentations.remove', presentationID);
        
    },
     "click #edit" (){
@@ -25,9 +25,13 @@ Template.dashboard.events({
         FlowRouter.go('/presentations/'+presentationID);
     },
     "click #start" (){
-        console.log("start presentation");
-        Session.set("currentPresentationID", this._id);
-        presentationID = this._id;
-        FlowRouter.go('/show/' + presentationID);
+        if(ClassRooms.findOne({presentationID:this.id}, {PresentationID:1})===undefined)
+            {
+                 Meteor.call('ClassRooms.new', this._id);
+            }
+        var ID = ClassRooms.findOne({PresentationID: this._id})._id;
+        Session.set('currentRoomID',ID);
+        FlowRouter.go("/show/"+ID);
+        
     }
 });

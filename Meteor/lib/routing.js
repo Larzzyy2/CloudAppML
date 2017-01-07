@@ -35,22 +35,22 @@ FlowRouter.route('/presentations/:presentationID/question/:QuestionID',{
     }
 });
 
-FlowRouter.route('/show/:presentationID',{
+FlowRouter.route('/show/:ClassRoomID',{
     action(params)
     {
-        Session.set('currentPresentationID', params.presentationID);
+        Session.set('currentClassRoomID', params.ClassRoomID);
         BlazeLayout.render('ShowPresentationTeacher');
     }
 });
 
 FlowRouter.route('/teacher', {
-    action: function(params) {
+    action: function() {
         BlazeLayout.render('TeacherMain');
     }
 })
 
 FlowRouter.route('/student', {
-    action: function(params) {
+    action: function() {
         BlazeLayout.render('StudentLayout');
         
     }
@@ -60,7 +60,7 @@ FlowRouter.route('/student', {
 FlowRouter.route('/student/:id',{
     action(params)
     {
-        Session.set('currentPresentationID', params.PresentationID);    
+        Session.set('currentClassRoomID', params.id);    
         BlazeLayout.render('AnswerStudentLayout');
     }
 });
