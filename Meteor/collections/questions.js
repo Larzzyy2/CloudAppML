@@ -52,7 +52,7 @@ Meteor.methods({
     }
 })
 
-QuestionSchema = new SimpleSchema({
+/*QuestionSchema = new SimpleSchema({
 QuestionString : {
         type: String
     },
@@ -63,4 +63,4 @@ QuestionString : {
         type: String
     },
 });
-Questions.attachSchema(QuestionSchema);
+Questions.attachSchema(QuestionSchema);*/

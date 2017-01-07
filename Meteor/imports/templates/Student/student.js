@@ -4,6 +4,7 @@ Meteor.subscribe('Questions');
 Meteor.subscribe('myPresentations');
 Meteor.subscribe('Answers');
 
+
 var code = undefined;
 
 Template.StudentLayout.events({

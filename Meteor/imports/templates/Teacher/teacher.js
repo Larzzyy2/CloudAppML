@@ -1,50 +1,54 @@
 import './teacher.html';
 
-Meteor.subscribe('Questions',  Session.get('currentPresentationID'));
+/*Meteor.subscribe('Questions',  Session.get('currentPresentationID'));*/
+Meteor.subscribe('ClassRooms');
+/*Meteor.subscribe('myPresentations');*/
+RoomData = null;
+counter = 0;
+counterTracker = new Tracker.Dependency();
+allQuestions = null;
 
-Meteor.subscribe('myPresentations');
-
-var counter = 0;
-var counterTracker = new Tracker.Dependency();
-var presentationData = null;
-var questionData = null;
-
+Template.ShowPresentationTeacher.onCreated(function(){
+    
+    var RoomID = Session.get('currentRoomID');      
+    RoomData = ClassRooms.findOne({_id : RoomID});
+    
+    var currentPresentationID = RoomData.PresentationID;
+    allQuestions = Questions.find({
+            PresentationID: currentPresentationID
+        }).fetch();
+});
 
 Template.ShowPresentationTeacher.helpers({
-    presentation(){
-        var PresID = Session.get('currentPresentationID');
-        presentationData = Presentations.find({
-            PresentationID: PresID
-        })
-    return presentationData;
+    RoomData(){
+        return RoomData;
     },
-    question(){
-        var PresID = Session.get('currentPresentationID');
-        //Gets all questions associated with presentation
-        questionData = Questions.find({PresentationID: PresID}).fetch();
-        counterTracker.depend();
-        console.log("QuestionData: " + questionData[counter]);
-        return questionData[counter];
-        },
+    currentQuestion(){
+         return Questions.findOne({_id: RoomData.currentQuestionID}).QuestionString;
+    },
 });
 
 Template.ShowPresentationTeacher.events({
     "click #left"(){
-        counter--;
-        counterTracker.changed();
-        console.log("QuestionData: " + questionData[counter]);
-/*        var PresID = Session.get('currentPresentationID');
-        Questions.update({PresentationID: PresID, index: counter},{$set:{show: false}});
-        counter--;
-        Questions.update({PresentationID: PresID, index: counter},{$set:{show: true}});*/
+        if(counter!=0)
+        {
+            counter--;
+            counterTracker.changed();
+            var nextQuestionID = allQuestions[counter]._id;
+            console.log("current question should be: " + allQuestions[counter].QuestionString);
+            Meteor.call("ClassRooms.nextQuestion", nextQuestionID, Session.get('currentRoomID'));
+            
+        }
+        
     },
     "click #right"(){
-        counter++;
-        counterTracker.changed();
-        console.log("QuestionData: " + questionData[counter]);
-      /*  var PresID = Session.get('currentPresentationID');
-        Questions.update({PresentationID: PresID, index: counter},{$set:{show: false}});
-        counter++;
-        Questions.update({PresentationID: PresID, index: counter},{$set:{show: true}});
-    */},
+        if(counter!=allQuestions.length-1)
+        {
+            counter++;
+            counterTracker.changed();
+            var nextQuestionID = allQuestions[counter]._id;
+            console.log("current question should be: " + allQuestions[counter].QuestionString);
+            Meteor.call("ClassRooms.nextQuestion",nextQuestionID,Session.get('currentRoomID'));
+        }
+    }
 });

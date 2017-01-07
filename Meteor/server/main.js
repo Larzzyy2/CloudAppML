@@ -36,3 +36,7 @@ Meteor.publish('AnswerOptions', function(){
 Meteor.publish('Answers', function(){
     return Answers.find();
 });
+
+Meteor.publish('ClassRooms', function(){
+    return ClassRooms.find();
+});
