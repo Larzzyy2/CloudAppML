@@ -62,6 +62,7 @@ Template.AnswerStudentLayout.onCreated(function () {
     currentQuestionObjDep.changed();
     
     currentQuestionObjDep.depend();
+    //DIT ZOU TELKENS OPNIEUW MOETEN GEBEUREN
     if (currentQuestionObject.Type.name === "Open") {
         questionIsOpen = true;
     }
@@ -76,8 +77,14 @@ Template.AnswerStudentLayout.helpers({
     }, 
     currentQuestion() {
             var query = ClassRooms.find({_id: RoomID});
+        
             var handler = query.observeChanges({
             changed: function(id, fields){
+                
+            RoomData = ClassRooms.findOne({
+                AccessCode: code
+            });
+                
             currentQuestionID = fields.currentQuestionID;
             currentQuestionIdDep.changed();
             console.log("changed question: " + currentQuestionID);
