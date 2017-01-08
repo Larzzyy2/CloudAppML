@@ -25,7 +25,7 @@ Template.dashboard.events({
         FlowRouter.go('/presentations/'+presentationID);
     },
     "click #start" (){
-        if(ClassRooms.findOne({presentationID:this.id}, {PresentationID:1})===undefined)
+        if(ClassRooms.findOne({PresentationID:this._id})==undefined)
             {
                  Meteor.call('ClassRooms.new', this._id);
             }

@@ -11,8 +11,6 @@ Template.addQuestion.events({
          $('#myModal').modal('hide');
     },
     'submit #newQuestion'(e){
-        //TO DO GEEF ZE DE VRAGEN EEN VOLGORDE
-        //EN MANIER OM BIJ TE HOUDEN WELKE VRAAG GETOOND WORDT OP HET BORD
         e.preventDefault();
         const target = e.target;
         const question = target.QuestionString.value;

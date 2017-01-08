@@ -50,7 +50,7 @@ Template.QuestionOverview.helpers({
     },
     Type(){
         console.log(this.toString());
-        return this.Type.displayName.toString();
+        return this.Type.displayName;
     }
 });
 

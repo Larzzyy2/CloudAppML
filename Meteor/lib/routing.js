@@ -38,7 +38,7 @@ FlowRouter.route('/presentations/:presentationID/question/:QuestionID',{
 FlowRouter.route('/show/:ClassRoomID',{
     action(params)
     {
-        Session.set('currentClassRoomID', params.ClassRoomID);
+        Session.set('currentRoomID', params.ClassRoomID);
         BlazeLayout.render('ShowPresentationTeacher');
     }
 });
@@ -60,7 +60,7 @@ FlowRouter.route('/student', {
 FlowRouter.route('/student/:id',{
     action(params)
     {
-        Session.set('currentClassRoomID', params.id);    
+        Session.set('currentRoomID', params.id);    
         BlazeLayout.render('AnswerStudentLayout');
     }
 });

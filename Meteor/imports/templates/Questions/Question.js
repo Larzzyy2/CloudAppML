@@ -37,7 +37,7 @@ Template.EditQuestion.events({
         const TypeValue = target.type.value;
         const Type = Types.findOne({
             name: TypeValue
-        })._id;
+        });
         const currentQuestionID = Session.get('currentQuestionID');
         
         //Updates the Question Type
