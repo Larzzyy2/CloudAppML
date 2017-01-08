@@ -3,10 +3,14 @@ import './student.html';
 Meteor.subscribe('Questions');
 Meteor.subscribe('myPresentations');
 Meteor.subscribe('Answers');
-Meteor.subscribe('ClassRooms')
+Meteor.subscribe('ClassRooms');
+Meteor.subscribe('AnswerOptions');
 
 RoomData = null;
 allQuestions = null;
+allAnswersOptions = null;
+
+currentQuestionObject = null;
 
 questionIsOpen = null;
 
@@ -36,31 +40,44 @@ Template.StudentLayout.events({
     }
 });
 
-Template.AnswerStudentLayout.onCreated(function(){
-    RoomData = ClassRooms.findOne({AccessCode : code});
-    
+Template.AnswerStudentLayout.onCreated(function () {
+    RoomData = ClassRooms.findOne({
+        AccessCode: code
+    });
     var currentPresentationID = RoomData.PresentationID;
     allQuestions = Questions.find({
         PresentationID: currentPresentationID
     }).fetch();
-});
-
-Template.AnswerStudentLayout.helpers({
-    RoomData() {
-            return RoomData;
-        }
-        , currentQuestion() {
-            return Questions.findOne({
-                _id: RoomData.currentQuestionID
-            });
-            if (currentQuestion.Type == "multipleChoice") {
+    allAnswersOptions = AnswerOptions.find({
+        
+    }).fetch();
+    currentQuestionObject = Questions.findOne({
+        _id: RoomData.currentQuestionID
+    });
+    if (typeof currentQuestionObject.Type === "string") {
         questionIsOpen = false;
     }
     else {
         questionIsOpen = true;
     }
-        }
-    
+});
+
+Template.AnswerStudentLayout.helpers({
+    RoomData() {
+            return RoomData;
+        }, currentQuestion() {
+            return Questions.findOne({
+                _id: RoomData.currentQuestionID
+            });
+            currentQuestionObject = Questions.findOne({
+                _id: RoomData.currentQuestionID
+            });
+        }, AnswersOptions() {
+            return allAnswersOptions;
+        },
+    IsOpen(){
+        return questionIsOpen;
+    }
 });
 
 Template.AnswerStudentLayout.events({
