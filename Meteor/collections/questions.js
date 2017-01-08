@@ -27,7 +27,7 @@ Meteor.methods({
             {
                 AnswerOptions.insert({
                     QuestionID: QuestionID,
-                    AnswerString: ""
+                    AnswerOptionString: ""
                 });
             }
         }

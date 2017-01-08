@@ -62,11 +62,9 @@ Meteor.methods({
     "ClassRooms.Answer"(ID, AnswerString){
         var questionid = ID;
         var answerstring = AnswerString;
-        debugger;
         Answers.insert({
             AnswerString: answerstring
             , QuestionID: questionid
         });
-        debugger;
     }
 });

@@ -51,11 +51,11 @@ Template.AnswerStudentLayout.onCreated(function () {
     currentQuestionObject = Questions.findOne({
         _id: RoomData.currentQuestionID
     });
-    if (typeof currentQuestionObject.Type === "string") {
-        questionIsOpen = false;
+    if (currentQuestionObject.Type.name === "Open") {
+        questionIsOpen = true;
     }
     else {
-        questionIsOpen = true;
+        questionIsOpen = false;
     }
 });
 
@@ -74,6 +74,7 @@ Template.AnswerStudentLayout.helpers({
         },
     IsOpen(){
         return questionIsOpen;
+        console.log(questionIsOpen);
     }
 });
 
