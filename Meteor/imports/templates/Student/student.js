@@ -8,6 +8,7 @@ Meteor.subscribe('ClassRooms')
 RoomData = null;
 allQuestions = null;
 
+questionIsOpen = null;
 
 code = null;
 
@@ -44,14 +45,22 @@ Template.AnswerStudentLayout.onCreated(function(){
     }).fetch();
 });
 
-//Helper for getting all Presentations
 Template.AnswerStudentLayout.helpers({
-    RoomData(){
-        return RoomData;
-    },
-    currentQuestion(){
-        return Questions.findOne({_id : RoomData.currentQuestionID}).QuestionString;
+    RoomData() {
+            return RoomData;
+        }
+        , currentQuestion() {
+            return Questions.findOne({
+                _id: RoomData.currentQuestionID
+            });
+            if (currentQuestion.Type == "multipleChoice") {
+        questionIsOpen = false;
     }
+    else {
+        questionIsOpen = true;
+    }
+        }
+    
 });
 
 Template.AnswerStudentLayout.events({
@@ -61,8 +70,7 @@ Template.AnswerStudentLayout.events({
         //Get value from form element
         const target = e.target;
         const AnswerString = target.answer.value;
-        var ID = 0; //NOG JUISTE ID MEEGEVEN, LARS NOG MEE BEZIG
-        var data =  Questions.findOne({ Show: true }); //currentQuestionID???????????????????
-        Meteor.call('ClassRooms.Answer', ID, data, AnswerString);
+        var ID = RoomData.currentQuestionID;
+        Meteor.call('ClassRooms.Answer', ID, AnswerString);
     }
 });

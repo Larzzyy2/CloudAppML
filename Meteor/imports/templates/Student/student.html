@@ -36,8 +36,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                {{currentQuestion}}
+                {{currentQuestion.QuestionString}}
             </div>
+            {{#if questionIsOpen}}
             <div class="col-md-12">
                 <form class="form-horizontal" id="formAnswer">
                         <div class="form-group">
@@ -53,6 +54,11 @@
                         
                     </form>
             </div>
+            {{else}}
+            <div class="col-md-12">
+                
+            </div>
+            {{/if}}
         </div>
     </div>
 </template>
