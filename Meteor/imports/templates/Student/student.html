@@ -56,10 +56,13 @@
             </div>
             {{else}}
             <div class="col-md-12">
-                <form action="">
+                <form class="form-horizontal" id="formAnswerMultiple">
                  {{#each allAnswersOptions}}
-                  <input type="radio" name="radAnswer" value="AnswerOptionString">{{AnswerOptionString}}<br>
+                     <input type="radio" name="radAnswer" value={{AnswerOptionString}}>{{AnswerOptionString}}<br>
                 {{/each}}
+                <div class="form-group ">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block login-button">submit</button>
+                        </div>
                 </form>
             </div>
             {{/if}}

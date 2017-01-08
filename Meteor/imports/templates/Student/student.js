@@ -48,7 +48,6 @@ Template.AnswerStudentLayout.onCreated(function () {
     allQuestions = Questions.find({
         PresentationID: currentPresentationID
     }).fetch();
-    
     currentQuestionObject = Questions.findOne({
         _id: RoomData.currentQuestionID
     });
@@ -80,11 +79,18 @@ Template.AnswerStudentLayout.helpers({
 
 Template.AnswerStudentLayout.events({
     'submit #formAnswer' (e) {
-        //Creates a new presentation 
         e.preventDefault();
         //Get value from form element
         const target = e.target;
         const AnswerString = target.answer.value;
+        var ID = RoomData.currentQuestionID;
+        Meteor.call('ClassRooms.Answer', ID, AnswerString);
+    },
+    'submit #formAnswerMultiple' (e) {
+        e.preventDefault();
+        //Get value from form element
+        const target = e.target;
+        const AnswerString = target.radAnswer.value;
         var ID = RoomData.currentQuestionID;
         Meteor.call('ClassRooms.Answer', ID, AnswerString);
     }
