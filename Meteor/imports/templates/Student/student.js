@@ -48,9 +48,7 @@ Template.AnswerStudentLayout.onCreated(function () {
     allQuestions = Questions.find({
         PresentationID: currentPresentationID
     }).fetch();
-    allAnswersOptions = AnswerOptions.find({
-        
-    }).fetch();
+    
     currentQuestionObject = Questions.findOne({
         _id: RoomData.currentQuestionID
     });
@@ -72,8 +70,8 @@ Template.AnswerStudentLayout.helpers({
             currentQuestionObject = Questions.findOne({
                 _id: RoomData.currentQuestionID
             });
-        }, AnswersOptions() {
-            return allAnswersOptions;
+        }, allAnswersOptions() {
+            return AnswerOptions.find({});
         },
     IsOpen(){
         return questionIsOpen;
