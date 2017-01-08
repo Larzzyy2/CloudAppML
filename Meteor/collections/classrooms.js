@@ -39,10 +39,11 @@ Meteor.methods({
         do {
             var x = Random.fraction()*100000
             code = parseInt(x,10);
+            console.log("code: " + code);
         }
         while(ClassRooms.findOne({AccessCode: code})!==undefined)
         
-        
+        console.log("code 2: " + code);
                ClassRooms.insert({
             PresentationID: presID,
            //Sets the first question

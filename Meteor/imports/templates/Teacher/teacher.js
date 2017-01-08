@@ -4,26 +4,20 @@ import './teacher.html';
 Meteor.subscribe('ClassRooms');
 /*Meteor.subscribe('myPresentations');*/
 RoomData = null;
+RoomID = null;
 counter = 0;
 counterTracker = new Tracker.Dependency();
 allQuestions = null;
 
-var currentQuestion;
-var currentQuestionDep = new Tracker.Dependency();
+var currentQuestionID = null;
+var currentQuestionIdDep = new Tracker.Dependency();
 
 Template.ShowPresentationTeacher.onCreated(function(){
-    
-    var RoomID = Session.get('currentRoomID');      
+    RoomID = Session.get('currentRoomID');
     RoomData = ClassRooms.findOne({_id : RoomID});
-    
     var currentPresentationID = RoomData.PresentationID;
-    allQuestions = Questions.find({
-            PresentationID: currentPresentationID
-        }).fetch();
-    
-    currentQuestion = Questions.findOne({_id : RoomData.currentQuestionID}).QuestionString;
-    currentQuestionDep.changed();
-    console.log(currentQuestion);
+    allQuestions = Questions.find({PresentationID: currentPresentationID}).fetch();    
+    currentQuestionID = RoomData.currentQuestionID;
 });
 
 Template.ShowPresentationTeacher.helpers({
@@ -31,9 +25,18 @@ Template.ShowPresentationTeacher.helpers({
         return RoomData;
     },
     currentQuestion(){
-        currentQuestionDep.depend();
-        return currentQuestion;
-    },
+        var query = ClassRooms.find({_id: RoomID});
+        var handler= query.observeChanges({
+        changed: function(id, fields){
+        currentQuestionID = fields.currentQuestionID;
+        currentQuestionIdDep.changed();
+        console.log("changed question: " + currentQuestionID);
+        },
+    });
+    currentQuestionIdDep.depend();
+    var currentQuestionString = Questions.findOne({_id: currentQuestionID}).QuestionString;
+    return currentQuestionString;
+    }
 });
 
 Template.ShowPresentationTeacher.events({
@@ -41,10 +44,7 @@ Template.ShowPresentationTeacher.events({
         if(counter!=0)
         {
             counter--;
-            counterTracker.changed();
             var nextQuestionID = allQuestions[counter]._id;
-            currentQuestion = Questions.findOne({_id: nextQuestionID}).QuestionString;
-            currentQuestionDep.changed();
             console.log("current question should be: " + allQuestions[counter].QuestionString);
             Meteor.call("ClassRooms.nextQuestion", nextQuestionID, Session.get('currentRoomID'));
             
@@ -55,10 +55,7 @@ Template.ShowPresentationTeacher.events({
         if(counter!=allQuestions.length-1)
         {
             counter++;
-            counterTracker.changed();
             var nextQuestionID = allQuestions[counter]._id;
-                        currentQuestion = Questions.findOne({_id: nextQuestionID}).QuestionString;
-            currentQuestionDep.changed();
             console.log("current question should be: " + allQuestions[counter].QuestionString);
             Meteor.call("ClassRooms.nextQuestion",nextQuestionID,Session.get('currentRoomID'));
         }

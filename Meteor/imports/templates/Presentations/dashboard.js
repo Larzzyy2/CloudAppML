@@ -25,13 +25,13 @@ Template.dashboard.events({
         FlowRouter.go('/presentations/'+presentationID);
     },
     "click #start" (){
-        if(ClassRooms.findOne({PresentationID:this._id})==undefined)
+        if(ClassRooms.findOne({PresentationID:this._id})===undefined)
             {
                  Meteor.call('ClassRooms.new', this._id);
             }
-        var ID = ClassRooms.findOne({PresentationID: this._id})._id;
-        Session.set('currentRoomID',ID);
-        FlowRouter.go("/show/"+ID);
+        var RoomID = ClassRooms.findOne({PresentationID: this._id})._id;
+        Session.set('currentRoomID',RoomID);
+        FlowRouter.go("/show/"+RoomID);
         
     }
 });
