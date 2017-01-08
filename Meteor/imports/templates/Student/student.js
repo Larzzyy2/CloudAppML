@@ -7,14 +7,18 @@ Meteor.subscribe('ClassRooms');
 Meteor.subscribe('AnswerOptions');
 
 RoomData = null;
+RoomID = null;
 allQuestions = null;
 allAnswersOptions = null;
 
 currentQuestionObject = null;
-
+currentQuestionObjDep = new Tracker.Dependency();
 questionIsOpen = null;
 
 code = null;
+
+var currentQuestionID = null;
+var currentQuestionIdDep = new Tracker.Dependency();
 
 Template.StudentLayout.events({
 
@@ -44,13 +48,20 @@ Template.AnswerStudentLayout.onCreated(function () {
     RoomData = ClassRooms.findOne({
         AccessCode: code
     });
+    RoomID = ClassRooms.findOne({
+        AccessCode: code
+    })._id;
+    console.log("RoomID: " + RoomID);
     var currentPresentationID = RoomData.PresentationID;
     allQuestions = Questions.find({
         PresentationID: currentPresentationID
     }).fetch();
-    currentQuestionObject = Questions.findOne({
-        _id: RoomData.currentQuestionID
-    });
+    currentQuestionID = RoomData.currentQuestionID;
+    
+    currentQuestionObject = Questions.findOne({_id: RoomData.currentQuestionID});
+    currentQuestionObjDep.changed();
+    
+    currentQuestionObjDep.depend();
     if (currentQuestionObject.Type.name === "Open") {
         questionIsOpen = true;
     }
@@ -61,15 +72,24 @@ Template.AnswerStudentLayout.onCreated(function () {
 
 Template.AnswerStudentLayout.helpers({
     RoomData() {
-            return RoomData;
-        }, currentQuestion() {
-            return Questions.findOne({
-                _id: RoomData.currentQuestionID
-            });
-            currentQuestionObject = Questions.findOne({
-                _id: RoomData.currentQuestionID
-            });
-        }, allAnswersOptions() {
+        return RoomData;
+    }, 
+    currentQuestion() {
+            var query = ClassRooms.find({_id: RoomID});
+            var handler = query.observeChanges({
+            changed: function(id, fields){
+            currentQuestionID = fields.currentQuestionID;
+            currentQuestionIdDep.changed();
+            console.log("changed question: " + currentQuestionID);
+            currentQuestionObject = Questions.findOne({_id: currentQuestionID});
+            currentQuestionObjDep.changed();
+            },    
+        });
+        currentQuestionIdDep.depend();
+        var currentQuestionString = Questions.findOne({_id: currentQuestionID}).QuestionString;
+        return currentQuestionString;
+        }, 
+    allAnswersOptions() {
             return AnswerOptions.find({});
         },
     IsOpen(){
