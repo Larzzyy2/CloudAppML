@@ -6,19 +6,15 @@ Presentations = new Mongo.Collection('presentations');
 
 Meteor.methods({
     'Presentations.remove' (presID){
+        //Removes Presentation
         Presentations.remove(presID);
-    },
-    'Presentations.add'(presentationName){
-
-/*    var code = null;*/
-    //Loop that prevents dupblicate accessCodes
-/*    do {
-        var date = new Date();
-        var x = Random.fraction()*100000
-        var code = parseInt(x,10);
-    }
-    while(Presentations.findOne({AccessCode: code})!==undefined)*/
+        //Removes Questions associated with presentation
+        Questions.remove({
+            PresentationID : presID
+        });
         
+    },
+    'Presentations.add'(presentationName){        
     var readableDate = new Date().toLocaleDateString();  
         
     //Insert Presentation into collection

@@ -34,6 +34,7 @@ Meteor.methods({
     },
     'Questions.remove'(ID){
         Questions.remove(ID);
+        AnswerOptions.remove({QuestionID:ID})
     },
     'Questions.update.name'(newName, questionID){
         Questions.update(questionID, {

@@ -8,6 +8,9 @@ counter = 0;
 counterTracker = new Tracker.Dependency();
 allQuestions = null;
 
+var currentQuestion;
+var currentQuestionDep = new Tracker.Dependency();
+
 Template.ShowPresentationTeacher.onCreated(function(){
     
     var RoomID = Session.get('currentRoomID');      
@@ -17,6 +20,10 @@ Template.ShowPresentationTeacher.onCreated(function(){
     allQuestions = Questions.find({
             PresentationID: currentPresentationID
         }).fetch();
+    
+    currentQuestion = Questions.findOne({_id : RoomData.currentQuestionID}).QuestionString;
+    currentQuestionDep.changed();
+    console.log(currentQuestion);
 });
 
 Template.ShowPresentationTeacher.helpers({
@@ -24,8 +31,8 @@ Template.ShowPresentationTeacher.helpers({
         return RoomData;
     },
     currentQuestion(){
-        counterTracker.depend();
-         return Questions.findOne({_id: allQuestions[counter]._id}).QuestionString;
+        currentQuestionDep.depend();
+        return currentQuestion;
     },
 });
 
@@ -36,6 +43,8 @@ Template.ShowPresentationTeacher.events({
             counter--;
             counterTracker.changed();
             var nextQuestionID = allQuestions[counter]._id;
+            currentQuestion = Questions.findOne({_id: nextQuestionID}).QuestionString;
+            currentQuestionDep.changed();
             console.log("current question should be: " + allQuestions[counter].QuestionString);
             Meteor.call("ClassRooms.nextQuestion", nextQuestionID, Session.get('currentRoomID'));
             
@@ -48,6 +57,8 @@ Template.ShowPresentationTeacher.events({
             counter++;
             counterTracker.changed();
             var nextQuestionID = allQuestions[counter]._id;
+                        currentQuestion = Questions.findOne({_id: nextQuestionID}).QuestionString;
+            currentQuestionDep.changed();
             console.log("current question should be: " + allQuestions[counter].QuestionString);
             Meteor.call("ClassRooms.nextQuestion",nextQuestionID,Session.get('currentRoomID'));
         }
