@@ -1,7 +1,4 @@
 Types = new Mongo.Collection('types');
-//ID
-//Naam
-//QuestionID
 
 QuestionSchema = new SimpleSchema({
     name: {

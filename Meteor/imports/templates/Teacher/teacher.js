@@ -1,4 +1,5 @@
 import './teacher.html';
+import '../style.css';
 
 /*Meteor.subscribe('Questions',  Session.get('currentPresentationID'));*/
 Meteor.subscribe('ClassRooms');
@@ -38,7 +39,6 @@ Template.ShowPresentationTeacher.helpers({
     return currentQuestionString;
     }
 });
-
 Template.ShowPresentationTeacher.events({
     "click #left"(){
         if(counter!=0)

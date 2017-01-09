@@ -27,7 +27,7 @@ Meteor.methods({
             {
                 AnswerOptions.insert({
                     QuestionID: QuestionID,
-                    AnswerOptionString: ""
+                    AnswerOptionString: "Answer option goes here"
                 });
             }
         }
@@ -53,12 +53,14 @@ Meteor.methods({
     }
 })
 
+//Schema gives error with Type
+
 /*QuestionSchema = new SimpleSchema({
 QuestionString : {
         type: String
     },
     Type: {
-        type: Object
+        type: Object //DOESNT WORK
     },
     PresentationID: {
         type: String

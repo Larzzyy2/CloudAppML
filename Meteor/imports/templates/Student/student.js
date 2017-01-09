@@ -1,4 +1,5 @@
 import './student.html';
+import '../style.css';
 
 Meteor.subscribe('Questions');
 Meteor.subscribe('myPresentations');
@@ -10,7 +11,7 @@ RoomData = null;
 RoomID = null;
 allQuestions = null;
 allAnswersOptions = null;
-
+currentQuestionID = null;
 currentQuestionObject = null;
 currentQuestionObjDep = new Tracker.Dependency();
 questionIsOpen = null;
@@ -64,9 +65,11 @@ Template.AnswerStudentLayout.onCreated(function () {
     currentQuestionObjDep.depend();
     //DIT ZOU TELKENS OPNIEUW MOETEN GEBEUREN
     if (currentQuestionObject.Type.name === "Open") {
+        Session.set('questionIsOpen', true);
         questionIsOpen = true;
     }
     else {
+        Session.set('questionIsOpen', false);
         questionIsOpen = false;
     }
 });
@@ -80,12 +83,6 @@ Template.AnswerStudentLayout.helpers({
         
             var handler = query.observeChanges({
             changed: function(id, fields){
-            //Update RoomData    
-            RoomData = ClassRooms.findOne({
-                AccessCode: code
-            });
-                debugger
-            //Update currentQuestionID    
             currentQuestionID = fields.currentQuestionID;
             currentQuestionIdDep.changed();
             console.log("changed question: " + currentQuestionID);
@@ -93,13 +90,11 @@ Template.AnswerStudentLayout.helpers({
             currentQuestionObject = Questions.findOne({_id: currentQuestionID});
             //Update view (not working)
             if (currentQuestionObject.Type.name === "Open") {
-                    questionIsOpen = true;
+                    Session.set('questionIsOpen', true);
                 }
                 else {
-                    questionIsOpen = false;
-                }
-                debugger;
-                
+                    Session.set('questionIsOpen', false);
+                }                
             currentQuestionObjDep.changed();
             },    
         });
@@ -109,12 +104,11 @@ Template.AnswerStudentLayout.helpers({
         },
     allAnswersOptions() {
             return AnswerOptions.find({
-                QuestionID : RoomData.currentQuestionID
+                QuestionID : currentQuestionID
             });
         },
     IsOpen(){
-        return questionIsOpen;
-        console.log(questionIsOpen);
+        return Session.get('questionIsOpen');
     }
 });
 
@@ -124,7 +118,7 @@ Template.AnswerStudentLayout.events({
         //Get value from form element
         const target = e.target;
         const AnswerString = target.answer.value;
-        var ID = RoomData.currentQuestionID;
+        var ID = currentQuestionID;
         Meteor.call('ClassRooms.Answer', ID, AnswerString);
     },
     'submit #formAnswerMultiple' (e) {
@@ -132,7 +126,7 @@ Template.AnswerStudentLayout.events({
         //Get value from form element
         const target = e.target;
         const AnswerString = target.radAnswer.value;
-        var ID = RoomData.currentQuestionID;
+        var ID = currentQuestionID;
         Meteor.call('ClassRooms.Answer', ID, AnswerString);
     }
 });

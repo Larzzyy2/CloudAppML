@@ -35,11 +35,6 @@ PresentationSchema = new SimpleSchema({
     },
     dateCreated: {
         type: String
-    }/* ,
-       AccessCode: {
-        type: Number,
-        min: 0,
-        max: 100000
-    },*/
+    }
 });
 Presentations.attachSchema(PresentationSchema);
