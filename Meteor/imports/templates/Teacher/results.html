@@ -1,0 +1,42 @@
+<template name="Resultslayout">
+{{#each Questions}}
+        <div>
+            <p>Question:</p>
+            <p>{{QuestionString}}</p>
+        </div>
+    
+        <div>
+            <p>Answers</p>
+        </div>
+{{/each}}
+</template>
+
+<template name="QuestionResult">
+
+    
+    <div>
+        
+        {{#if isOpen}}
+            {{> OpenQuestionResult}}
+        {{/if}}
+        
+  <!--      {{if isMultiple}}
+            {{> MultipleQuestionResult}}
+        {{/if}}-->
+    </div>
+</template>
+
+<template name="OpenQuestionResult">
+        <ul>
+            {{#each Answers}}
+            <li>{{AnswerString}}</li>
+            {{/each}}
+        </ul>
+</template>
+
+<!--<template name="MultipleQuestionResult">
+    <ul>
+        {{#each AnswerOptions}}
+        <li>{{AnswerOptionString}} aantal keer geselecteerd: {{count}}</li>
+    </ul>
+</template>-->

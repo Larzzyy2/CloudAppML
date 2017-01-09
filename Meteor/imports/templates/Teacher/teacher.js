@@ -5,8 +5,8 @@ import '../style.css';
 Meteor.subscribe('ClassRooms');
 Meteor.subscribe('AnswerOptions');
 /*Meteor.subscribe('myPresentations');*/
-RoomData = null;
-RoomID = null;
+var RoomData = null;
+var RoomID = null;
 counter = 0;
 counterTracker = new Tracker.Dependency();
 allQuestions = null;
@@ -42,6 +42,17 @@ Template.ShowPresentationTeacher.helpers({
         allAnswersOptionsDep.changed();    
         },
     });
+        if(counter==allQuestions.length-1){
+            console.log('lastQuestion');
+            Session.set('lastQuestion', true);
+        }
+        else
+        {
+        console.log("not last question");
+         Session.set('lastQuestion', false);
+        }
+    
+    
     currentQuestionIdDep.depend();
     var currentQuestionString = Questions.findOne({_id: currentQuestionID}).QuestionString;
     return currentQuestionString;
@@ -52,6 +63,9 @@ Template.ShowPresentationTeacher.helpers({
     },
     IsOpen(){
         return Session.get('questionIsOpen');
+	},
+    LastQuestion(){
+        return Session.get('lastQuestion');
     }
 });
 Template.ShowPresentationTeacher.events({
@@ -59,6 +73,7 @@ Template.ShowPresentationTeacher.events({
         if(counter!=0)
         {
             counter--;
+            counterTracker.changed();
             var nextQuestionID = allQuestions[counter]._id;
             console.log("current question should be: " + allQuestions[counter].QuestionString);
             Meteor.call("ClassRooms.nextQuestion", nextQuestionID, Session.get('currentRoomID'));
@@ -70,9 +85,16 @@ Template.ShowPresentationTeacher.events({
         if(counter!=allQuestions.length-1)
         {
             counter++;
+            counterTracker.changed();
             var nextQuestionID = allQuestions[counter]._id;
             console.log("current question should be: " + allQuestions[counter].QuestionString);
             Meteor.call("ClassRooms.nextQuestion",nextQuestionID,Session.get('currentRoomID'));
         }
+    },
+    "click #finish"(){
+        var code = ClassRooms.findOne({_id:RoomID })._id;
+        console.log(code);
+        Session.set('currentRoomID',code);
+        FlowRouter.go('/results/'+code);
     }
 });

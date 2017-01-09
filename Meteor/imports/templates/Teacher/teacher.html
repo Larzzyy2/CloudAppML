@@ -5,16 +5,20 @@
                 <h2 class="text-center">{{currentQuestion}}</h2> 
         </div>
         <div style="float:left;">
-            <button type="button" class="btn btn-primary btn-lg" id="left"> <span class="glyphicon glyphicon-arrow-left">    </span> </button>
+                <button type="button" class="btn btn-primary btn-lg" id="left"><span class="glyphicon glyphicon-arrow-left">    </span></button>
         </div>
         <div style="float:right">
-            <button type="button" class="btn btn-primary btn-lg" id="right"> <span class="glyphicon glyphicon-arrow-right">    </span> </button>
-        </div> 
+                <button type="button" class="btn btn-primary btn-lg" id="right"><span class="glyphicon glyphicon-arrow-right">    </span></button>
+        </div>
 
         <div style="margin-top:100px;">
              {{#each answerOptions}}
             <p class="text-center">{{AnswerOptionString}}</p>
             {{/each}} 
-        </div> 
+        {{#if LastQuestion}}
+        <div class="end">
+          <button id="finish" class="btn btn-success">Finish</button>
+        </div>
+        {{/if}}
     </div>
 </template>

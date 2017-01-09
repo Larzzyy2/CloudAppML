@@ -64,3 +64,11 @@ FlowRouter.route('/student/:id',{
         BlazeLayout.render('AnswerStudentLayout');
     }
 });
+
+FlowRouter.route('/results/:RoomID',{
+    action(params)
+    {
+        Session.set('currentRoomID',params.RoomID);
+        BlazeLayout.render('Resultslayout');
+    }
+})
