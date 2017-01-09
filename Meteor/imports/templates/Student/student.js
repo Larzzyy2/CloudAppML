@@ -96,6 +96,7 @@ Template.AnswerStudentLayout.helpers({
                     Session.set('questionIsOpen', false);
                 }                
             currentQuestionObjDep.changed();
+            $('#SUBMIT').prop('disabled', false);
             },    
         });
         currentQuestionIdDep.depend();
@@ -120,6 +121,9 @@ Template.AnswerStudentLayout.events({
         const AnswerString = target.answer.value;
         var ID = currentQuestionID;
         Meteor.call('ClassRooms.Answer', ID, AnswerString);
+        $('#SUBMIT').prop('disabled', true);
+        $('#inputField').val('');
+        
     },
     'submit #formAnswerMultiple' (e) {
         e.preventDefault();
@@ -128,5 +132,6 @@ Template.AnswerStudentLayout.events({
         const AnswerString = target.radAnswer.value;
         var ID = currentQuestionID;
         Meteor.call('ClassRooms.Answer', ID, AnswerString);
+        $('#SUBMIT').prop('disabled', true);
     }
 });
