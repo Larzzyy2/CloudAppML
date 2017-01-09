@@ -1,16 +1,23 @@
 <template name="addQuestion">
     <form id="newQuestion">
-        <p>Your Question:</p>
+        <p class="text-center">Your Question:</p>
+        <div class="text-center">
         <input type="text" name="QuestionString" placeholder="Add new Question" />
-        <p>Your Question Type:</p>
-        <div class="radio">
-            <label>
+        </div>
+        <p class="text-center">Your Question Type:</p>
+        <div class="radio text-center">
+            <label class="text-center">
                 <input type="radio" name="type" checked="true" value="Open">Open Question</label>
         </div>
-        <div class="radio">
-            <label>
+        <div class="radio text-center">
+            <label class="text-center">
                 <input type="radio" name="type" value="MultipleChoice">Multiple Choice Question</label>
         </div>
-        <input type="submit" value="Create Question"> </form>
-    <button id="cancel">Cancel</button>
+        <div class="text-center">
+        <input type="submit" value="Create Question"> 
+        </div>
+        </form>
+        <div class="text-center">
+        <button id="cancel">Cancel</button>
+        </div>
 </template>

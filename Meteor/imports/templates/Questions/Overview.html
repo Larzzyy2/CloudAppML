@@ -1,11 +1,15 @@
 <template name="DetailLayout"> 
-    {{> loginButtons}}
+    
     {{#if currentUser}}
-<button id="back">Back</button>
+<button type="button" class="btn btn-primary btn-lg text-center" id="back">Back</button>
         <div class="container">
         <div class="col-md-12">
-                <button id="createQuestion"><span class="btn btn-info btn-lg"><span class="glyphicon glyphicon-plus"></span></span> New Question</button>
             {{> Info}}
+               <div class="text-center">
+                <button id="createQuestion" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span>
+                New Question</button>
+                 </div>
+            
             {{#if newQuestion}}
             {{> addQuestion}}
             {{/if}}
@@ -17,12 +21,13 @@
     {{else}}
     <p>Login</p>
     {{/if}}
+    {{> loginButtons}}
 </template>
 
 <template name="Info">
 {{#each presentation}}
-<h1>{{name}}    <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-primary btn-xs" id="editName"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></button>      </h1>
+<h2 class="text-center">{{name}}    <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-primary btn-sm" id="editName"  data-toggle="modal" data-target="#myModal">Edit <span class="glyphicon glyphicon-pencil"></span></button></h2>
  
     
 <!-- Modal -->

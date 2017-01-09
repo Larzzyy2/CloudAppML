@@ -34,10 +34,9 @@ Template.Info.events({
         e.preventDefault();
         const target = e.target;
         const presentationString = target.name.value;
+        var ID = Session.get('currentPresentationID');
         
-        Presentations.update(this._id, {
-            $set: { name: presentationString}
-        });
+        Meteor.call('Presentations.update', ID, presentationString);
     },
     "click #ok"(){
          $('#myModal').modal('hide');

@@ -27,7 +27,7 @@ Meteor.methods({
             {
                 AnswerOptions.insert({
                     QuestionID: QuestionID,
-                    AnswerOptionString: "Answer option goes here"
+                    AnswerOptionString: ""
                 });
             }
         }

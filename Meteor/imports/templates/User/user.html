@@ -2,8 +2,6 @@
 
 <template name='user'>
     {{#if currentUser}}
-    <p><img src="{{currentUser.services.google.picture}}" width=100></p>
-    <p>Hello, {{currentUser.services.google.name}}</p>
-    <p>Your e-mail: {{currentUser.services.google.email}}</p>
+    <p class="text-center"><img src="{{currentUser.services.google.picture}}" width=100></p>
     {{/if}}
 </template>

@@ -23,6 +23,11 @@ Meteor.methods({
             userID: this.userId,
             dateCreated: readableDate,
         });
+    },
+    'Presentations.update'(id, newPresentationName){
+        Presentations.update(id, {
+            $set: { name: newPresentationName}
+        });
     }
 });
 
