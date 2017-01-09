@@ -1,29 +1,19 @@
 ClassRooms = new Mongo.Collection('classrooms');
-//PresentationID
-//CurrentQuestionID
-//AccessCode
 
-/*ClassRoomSchema = new SimpleSchema({
+ClassRoomSchema = new SimpleSchema({
     PresentationID: {
         type: String
     },
     currentQuestionID: {
+        type: String
     },
-    ¨
-    Questions :{
-        type: [String]
-    },
-    
-    
     AccessCode: {
         type: Number
     }
     
-    
-});*/
+});
 
-/*ClassRooms.attachSchema(ClassRoomSchema);*/
-
+ClassRooms.attachSchema(ClassRoomSchema);
 
 Meteor.methods({
     "ClassRooms.new" (presID){

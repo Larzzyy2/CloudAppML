@@ -9,9 +9,7 @@ Template.dashboard.helpers({
         //Gets all presentations associated with user
         return Presentations.find({userID: Meteor.userId()});
 
-    },
-
-    
+    },   
 });
 Template.dashboard.events({
    "click #delete" (){

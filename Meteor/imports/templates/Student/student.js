@@ -1,4 +1,5 @@
 import './student.html';
+import '../style.css';
 
 Meteor.subscribe('Questions');
 Meteor.subscribe('myPresentations');

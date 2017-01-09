@@ -53,12 +53,14 @@ Meteor.methods({
     }
 })
 
+//Schema gives error with Type
+
 /*QuestionSchema = new SimpleSchema({
 QuestionString : {
         type: String
     },
     Type: {
-        type: Object
+        type: Object //DOESNT WORK
     },
     PresentationID: {
         type: String
