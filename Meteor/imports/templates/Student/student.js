@@ -106,7 +106,7 @@ Template.AnswerStudentLayout.helpers({
         currentQuestionIdDep.depend();
         var currentQuestionString = Questions.findOne({_id: currentQuestionID}).QuestionString;
         return currentQuestionString;
-        }, 
+        },
     allAnswersOptions() {
             return AnswerOptions.find({
                 QuestionID : RoomData.currentQuestionID
