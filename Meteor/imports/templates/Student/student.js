@@ -80,15 +80,26 @@ Template.AnswerStudentLayout.helpers({
         
             var handler = query.observeChanges({
             changed: function(id, fields){
-                
+            //Update RoomData    
             RoomData = ClassRooms.findOne({
                 AccessCode: code
             });
-                
+                debugger
+            //Update currentQuestionID    
             currentQuestionID = fields.currentQuestionID;
             currentQuestionIdDep.changed();
             console.log("changed question: " + currentQuestionID);
+            //Update currentQuestionObject
             currentQuestionObject = Questions.findOne({_id: currentQuestionID});
+            //Update view (not working)
+            if (currentQuestionObject.Type.name === "Open") {
+                    questionIsOpen = true;
+                }
+                else {
+                    questionIsOpen = false;
+                }
+                debugger;
+                
             currentQuestionObjDep.changed();
             },    
         });
@@ -97,7 +108,9 @@ Template.AnswerStudentLayout.helpers({
         return currentQuestionString;
         }, 
     allAnswersOptions() {
-            return AnswerOptions.find({});
+            return AnswerOptions.find({
+                QuestionID : RoomData.currentQuestionID
+            });
         },
     IsOpen(){
         return questionIsOpen;
