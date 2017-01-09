@@ -10,7 +10,10 @@ Meteor.subscribe('AnswerOptions');
 RoomData = null;
 RoomID = null;
 allQuestions = null;
+
 allAnswersOptions = null;
+allAnswersOptionsDep = new Tracker.Dependency();
+
 currentQuestionID = null;
 currentQuestionObject = null;
 currentQuestionObjDep = new Tracker.Dependency();
@@ -46,6 +49,8 @@ Template.StudentLayout.events({
 });
 
 Template.AnswerStudentLayout.onCreated(function () {
+    
+    
     RoomData = ClassRooms.findOne({
         AccessCode: code
     });
@@ -63,7 +68,6 @@ Template.AnswerStudentLayout.onCreated(function () {
     currentQuestionObjDep.changed();
     
     currentQuestionObjDep.depend();
-    //DIT ZOU TELKENS OPNIEUW MOETEN GEBEUREN
     if (currentQuestionObject.Type.name === "Open") {
         Session.set('questionIsOpen', true);
         questionIsOpen = true;
@@ -97,6 +101,10 @@ Template.AnswerStudentLayout.helpers({
                 }                
             currentQuestionObjDep.changed();
             $('#SUBMIT').prop('disabled', false);
+                
+            allAnswersOptions = AnswerOptions.find({
+                QuestionID : currentQuestionID});
+            allAnswersOptionsDep.changed();
             },    
         });
         currentQuestionIdDep.depend();
@@ -104,9 +112,8 @@ Template.AnswerStudentLayout.helpers({
         return currentQuestionString;
         },
     allAnswersOptions() {
-            return AnswerOptions.find({
-                QuestionID : currentQuestionID
-            });
+        allAnswersOptionsDep.depend();
+        return allAnswersOptions;
         },
     IsOpen(){
         return Session.get('questionIsOpen');

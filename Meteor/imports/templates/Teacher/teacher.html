@@ -1,23 +1,23 @@
 <template name="ShowPresentationTeacher">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-sm-offset-5">
-            <h1>Access code: {{RoomData.AccessCode}}</h1>
-            <h2>{{currentQuestion}}</h2>
-            </div>
+                <h1 class="text-center">Access code: {{RoomData.AccessCode}}</h1>
+                <h2 class="text-center">{{currentQuestion}}</h2> 
         </div>
         <div style="float:left;">
-            <button type="button" class="btn btn-primary btn-lg" id="left">
-                <span class="glyphicon glyphicon-arrow-left">    </span>
-            </button>
+            <button type="button" class="btn btn-primary btn-lg" id="left"> <span class="glyphicon glyphicon-arrow-left">    </span> </button>
         </div>
         <div style="float:right">
-            <button type="button" class="btn btn-primary btn-lg" id="right">
-                <span class="glyphicon glyphicon-arrow-right">    </span>
-            </button>
-        </div>
-        <div>
+            <button type="button" class="btn btn-primary btn-lg" id="right"> <span class="glyphicon glyphicon-arrow-right">    </span> </button>
+        </div> 
+        {{#if IsOpen}}
 
-        </div>
+        {{else}}
+        <div style="margin-top:100px;">
+             {{#each answerOptions}}
+            <p class="text-center">{{AnswerOptionString}}</p>
+            {{/each}} 
+        </div> 
+        {{/if}} 
     </div>
 </template>
