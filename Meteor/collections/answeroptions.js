@@ -10,8 +10,10 @@ Meteor.methods({
         AnswerOptions.remove(ID);
     }
 });
+/*
 AnswerOptions.schema = new SimpleSchema({
     QuestionID: {type: String},
     AnswerOptionString: {type: String}
 });
 AnswerOptions.attachSchema(AnswerOptions.schema);
+*/
