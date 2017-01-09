@@ -23,6 +23,7 @@ Template.ShowPresentationTeacher.onCreated(function(){
     var currentPresentationID = RoomData.PresentationID;
     allQuestions = Questions.find({PresentationID: currentPresentationID}).fetch();    
     currentQuestionID = RoomData.currentQuestionID;
+    debugger;
 });
 
 Template.ShowPresentationTeacher.helpers({

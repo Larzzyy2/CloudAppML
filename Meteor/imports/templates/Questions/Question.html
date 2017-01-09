@@ -1,21 +1,24 @@
 <template name="QuestionLayout">
-<button id="back">Back</button>
-{{> loginButtons}}
+<button type="button" class="btn btn-primary btn-lg text-center" id="back" style="margin: 5px;">Back</button>
+
 {{#if currentUser}}
 {{> Name}}
 {{> EditQuestion}}
 {{else}}
 <p>Please login</p>
 {{/if}}
+{{> loginButtons}}
 </template>
 
 <template name="Name">
         {{#each question}}
-        <h1>
-{{QuestionString}}
-    
-    <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-primary btn-xs" id="editName"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></button>   </h1>
+    <div class="text-center">
+        <h2>{{QuestionString}}
+        <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-primary btn-sm" id="editName"  data-toggle="modal" data-target="#myModal">Edit <span class="glyphicon glyphicon-pencil"></span></button>   
+        
+        </h2>
+    </div>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -45,29 +48,36 @@
 </template>
 
 <template name="EditQuestion">
-    
+    <div class="text-center">
     {{currenttype}}
     <form id="updateQuestion">
+    <div class="text-center">
     <label>
         <input type="radio" name="type" id="radioOpen" value="Open" class="radiobutton">Open Question
     </label>
-        
+        </div>
+    <div class="text-center">    
     <label>
     <input type="radio" name="type" id="radioMultiple" value="MultipleChoice" class="radiobutton">Multiple Choice Question
     </label>
-    
+        </div>
     {{#if MultipleChoiceSelected}}
-        <div class="col-md-6" id="choice">
-        <button type="button" id="addOption" class="btn btn-primary">+ Add Option</button>
-        <ul>
+        <div id="choice">
+        <div class="text-center">
+        <button style="margin: 5px;" type="button" id="addOption" class="btn btn-primary">+ Add Option</button>
+        </div>
         {{#each option}}
-            <li><input name="Option" data-id="{{this._id}}" autocomplete="off" value={{AnswerOptionString}} type="text" placeholder="Answer Option" class="answerOption"></li><button type="button" id="deleteOption" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>   
-        {{/each}}
-        </ul>
-        
+           <div class="text-center">
+            <input name="Option" data-id="{{this._id}}" autocomplete="off" value={{AnswerOptionString}} type="text" placeholder="Answer Option" class="answerOption">
+            </div>
+            <button type="button" id="deleteOption" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>   
+            {{/each}}
     </div>
     {{/if}}
+    <div class="text-center">
     <button type="submit" id="submitQuestion" class="btn btn-success">Save</button>
+    </div>
     </form>
+    </div>
 
 </template>
