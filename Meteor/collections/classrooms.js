@@ -40,7 +40,7 @@ Meteor.methods({
 
     },
     "ClassRooms.remove"(ClassRoomID){
-        Classrooms.remove({_id: ClassRoomID});
+        ClassRooms.remove({_id: ClassRoomID});
     },
     "ClassRooms.Answer"(ID, AnswerString){
         var questionid = ID;
