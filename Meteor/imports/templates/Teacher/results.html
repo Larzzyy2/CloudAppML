@@ -1,6 +1,10 @@
 <template name="Resultslayout">
     {{#each Answers}}
-    <p>Question: {{QuestionString}}</p>
+    <div class="page-header text-center">
+    <h1>Question: {{QuestionString}}</h1>
+    </div>
+    <div class="text-center">
     <p>Answer: {{AnswerString}}</p>
+    </div>
     {{/each}}
 </template>
