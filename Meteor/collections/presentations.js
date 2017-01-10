@@ -8,10 +8,29 @@ Meteor.methods({
     'Presentations.remove' (presID){
         //Removes Presentation
         Presentations.remove(presID);
+   
+        
+        //Removes AnswerOptions Atttached to Questions attached to presentation     
+        var Q = Questions.find({
+            PresentationID : presID
+        }).fetch();
+        
+        
+        console.log(Q);
+        
+        for (var i = 0; i<Q.length;i++)
+        {      
+            AnswerOptions.remove({
+                QuestionID : Q[i]._id
+                });
+        }
+        
         //Removes Questions associated with presentation
         Questions.remove({
             PresentationID : presID
         });
+
+
         
     },
     'Presentations.add'(presentationName){        
