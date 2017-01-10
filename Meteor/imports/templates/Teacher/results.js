@@ -35,3 +35,11 @@ Template.Resultslayout.helpers({
     }
     
 });
+
+Template.Resultslayout.events({
+    "click #ClassRoomFinished"(){
+        var ID = Session.get('currentRoomID');
+        Meteor.call("ClassRooms.remove", ID);
+        FlowRouter.go('/teacher');
+    }
+})
