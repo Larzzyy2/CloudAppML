@@ -24,7 +24,6 @@ Template.dashboard.events({
     },
     "click #start" (){
         console.log(this._id);
-        debugger
         if(ClassRooms.findOne({PresentationID:this._id})===undefined)
         {
         if(Questions.findOne({PresentationID:this._id})!==undefined)
