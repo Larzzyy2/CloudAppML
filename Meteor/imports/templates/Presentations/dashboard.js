@@ -23,13 +23,31 @@ Template.dashboard.events({
         FlowRouter.go('/presentations/'+presentationID);
     },
     "click #start" (){
+        console.log(this._id);
+        debugger
         if(ClassRooms.findOne({PresentationID:this._id})===undefined)
+        {
+        if(Questions.findOne({PresentationID:this._id})!==undefined)
             {
-                 Meteor.call('ClassRooms.new', this._id);
+            var code = null;
+            //Loop that prevents dupblicate accessCodes
+            do 
+            {
+            var x = Random.fraction()*100000
+            code = parseInt(x,10);
             }
-        var RoomID = ClassRooms.findOne({PresentationID: this._id})._id;
-        Session.set('currentRoomID',RoomID);
-        FlowRouter.go("/show/"+RoomID);
+            while(ClassRooms.findOne({AccessCode: code})!==undefined)
+        Meteor.call('ClassRooms.new', this._id, code);
+            }
+            else
+                {
+                    window.alert("No Questions attached to this presentation, please add a question.");
+                    FlowRouter.go('/presentations/'+this._id);
+                }
+        }
+        var ID = ClassRooms.findOne({PresentationID: this._id})._id;
+        Session.set('currentRoomID',ID);
+        FlowRouter.go("/show/"+ID);
         
     }
 });

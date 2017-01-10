@@ -16,8 +16,7 @@ ClassRoomSchema = new SimpleSchema({
 ClassRooms.attachSchema(ClassRoomSchema);
 
 Meteor.methods({
-    "ClassRooms.new" (presID){
-        var code =null;
+    "ClassRooms.new" (presID, code){
         var Q = null;
         
         Q = Questions.find({
@@ -25,15 +24,8 @@ Meteor.methods({
         }).fetch(); 
         console.log("First Question: " + Q[0].QuestionString);
         
-        //Loop that prevents dupblicate accessCodes
-        do {
-            var x = Random.fraction()*100000
-            code = parseInt(x,10);
-            console.log("code: " + code);
-        }
-        while(ClassRooms.findOne({AccessCode: code})!==undefined)
         
-        console.log("code 2: " + code);
+
                ClassRooms.insert({
             PresentationID: presID,
            //Sets the first question
